@@ -46,6 +46,29 @@ class CircularDoublyLinkedList:
             current_node = current_node.next
         raise ValueError('Value not found in list.')
     
+    def peek(self):
+        if self.length == 0:
+            raise ValueError('Cannot peek from empty list.')
+        return self.head.value
+    
+    def remove(self):
+        if self.length == 0:
+            raise ValueError('Cannot remove from empty list.')
+        value = self.head.value
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+            self.length -= 1
+        else:
+            self.head = self.head.next
+            self.tail.next = self.head
+            self.head.prev = self.tail
+        self.length -= 1
+        return value
+    
+    def is_empty(self):
+        return self.length == 0
+    
     def __len__(self):
         return self.length
     

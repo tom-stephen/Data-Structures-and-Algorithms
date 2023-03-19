@@ -7,6 +7,15 @@ class MaxHeap:
         self.heap.append(item)
         self._percolate_up(len(self.heap) - 1)
 
+    def remove(self):
+        if self.is_empty():
+            return None
+        max_item = self.heap[0]
+        self.heap[0] = self.heap[-1]
+        del self.heap[-1]
+        self._percolate_down(0)
+        return max_item
+    
     def extract_max(self):
         if self.is_empty():
             return None
@@ -15,6 +24,11 @@ class MaxHeap:
         del self.heap[-1]
         self._percolate_down(0)
         return max_item
+
+    def peek(self):
+        if self.is_empty():
+            return None
+        return self.heap[0]
 
     def is_empty(self):
         return len(self.heap) == 0

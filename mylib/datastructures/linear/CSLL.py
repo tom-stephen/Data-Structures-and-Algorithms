@@ -41,6 +41,19 @@ class CircularLinkedList:
             current_node = current_node.next
         raise ValueError('Value not found in list.')
     
+    def peek(self):
+        if self.length == 0:
+            raise ValueError('Cannot peek from empty list.')
+        return self.head.value
+    
+    def get_node(self, index):
+        if index >= self.length:
+            raise IndexError('Index out of range.')
+        current_node = self.head
+        for _ in range(index):
+            current_node = current_node.next
+        return current_node
+
     def __len__(self):
         return self.length
     

@@ -6,6 +6,14 @@ class MinHeap:
         self.heap.append(item)
         self._percolate_up(len(self.heap) - 1)
 
+    def delete(self, item):
+        if self.is_empty():
+            return None
+        index = self.heap.index(item)
+        self.heap[index] = self.heap[-1]
+        del self.heap[-1]
+        self._percolate_down(index)
+    
     def extract_min(self):
         if self.is_empty():
             return None

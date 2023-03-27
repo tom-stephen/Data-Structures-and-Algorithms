@@ -35,7 +35,7 @@ class CircularLinkedList:
         self.length += 1
         self.sorted = False
 
-    def insert(self, node, value):
+    def insert(self, node, index):
         if self.head is None:
             self.head = node
             self.tail = node
@@ -43,22 +43,21 @@ class CircularLinkedList:
             self.sorted = False
             return
         
-        if self.head.value == value:
+        if index == 0:
             self.insertHead(node)
             return
         
-        current_node = self.head
-        while current_node.next is not None:
-            if current_node.value == value:
-                node.next = current_node.next
-                current_node.next = node
-                self.length += 1
-                self.sorted = False
-                return
-            current_node = current_node.next
-        if current_node.value == value:
+        if index == self.length:
             self.insertTail(node)
             return
+        
+        current_node = self.head
+        for i in range(index - 1):
+            current_node = current_node.next
+        node.next = current_node.next
+        current_node.next = node
+        self.length += 1
+        self.sorted = False
         
     def sort(self):
         if self.head is None:
@@ -112,15 +111,17 @@ class CircularLinkedList:
             self.sorted = True
             return
         
-    def Search(self, value):
+    def Search(self, node):
         if self.head is None:
             return None
         
         current_node = self.head
-        while current_node is not None:
-            if current_node.value == value:
+        while current_node.next is not None:
+            if current_node == node:
                 return current_node
             current_node = current_node.next
+        if current_node == node:
+            return current_node
         return None
 
     def DeleteHead(self):

@@ -35,33 +35,23 @@ class DoublyLinkedList:
         self.length += 1
         self.sorted = False
     
-    def insert(self, node, value):
-        if self.head is None:
-            self.head = node
-            self.tail = node
-            self.length += 1
-            self.sorted = False
-            return
-        
-        if self.head.value == value:
+    def insert(self, node, index):
+        if index == 0:
             self.insertHead(node)
+            return
+        elif index == self.length:
+            self.insertTail(node)
             return
         
         current_node = self.head
-        while current_node.next is not None:
-            if current_node.value == value:
-                node.next = current_node.next
-                current_node.next.prev = node
-                current_node.next = node
-                node.prev = current_node
-                self.length += 1
-                self.sorted = False
-                return
+        for i in range(index):
             current_node = current_node.next
-        
-        if current_node.value == value:
-            self.insertTail(node)
-            return
+        node.next = current_node
+        node.prev = current_node.prev
+        current_node.prev.next = node
+        current_node.prev = node
+        self.length += 1
+        self.sorted = False
         
     def sort(self):
         if self.head is None:

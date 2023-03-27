@@ -4,11 +4,13 @@ class DoublyLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
+        self.sorted = False
         self.length = 0
     
     def __init__(self, node):
         self.head = node
         self.tail = node
+        self.sorted = False
         self.length = 1
 
     def insertHead(self, node):
@@ -20,6 +22,7 @@ class DoublyLinkedList:
             self.head.prev = node
             self.head = node
         self.length += 1
+        self.sorted = False    
     
     def insertTail(self, node):
         if self.head is None:
@@ -30,12 +33,14 @@ class DoublyLinkedList:
             node.prev = self.tail
             self.tail = node
         self.length += 1
+        self.sorted = False
     
     def insert(self, node, value):
         if self.head is None:
             self.head = node
             self.tail = node
             self.length += 1
+            self.sorted = False
             return
         
         if self.head.value == value:
@@ -50,8 +55,10 @@ class DoublyLinkedList:
                 current_node.next = node
                 node.prev = current_node
                 self.length += 1
+                self.sorted = False
                 return
             current_node = current_node.next
+        
         if current_node.value == value:
             self.insertTail(node)
             return
@@ -67,12 +74,14 @@ class DoublyLinkedList:
                 current_node.value = current_node.next.value
                 current_node.next.value = temp
             current_node = current_node.next
+        self.sorted = True
 
     def sortedInsert(self, node):
         if self.head is None:
             self.head = node
             self.tail = node
             self.length += 1
+            self.sorted = True
             return
         
         # check if the list is sorted
@@ -86,9 +95,11 @@ class DoublyLinkedList:
         # insert the node
         if node.value < self.head.value:
             self.insertHead(node)
+            self.sorted = True
             return
         elif node.value > self.tail.value:
             self.insertTail(node)
+            self.sorted = True
             return
         
         current_node = self.head
@@ -99,6 +110,7 @@ class DoublyLinkedList:
                 current_node.next = node
                 node.prev = current_node
                 self.length += 1
+                self.sorted = True
                 return
             current_node = current_node.next
 
@@ -161,17 +173,23 @@ class DoublyLinkedList:
     def Clear(self):
         self.head = None
         self.tail = None
+        self.sorted = False
         self.length = 0
     
     def Print(self):
+        # print the length, sorted status, and values of the list
+        print('Length: ' + str(self.length))
+        print('Sorted: ' + str(self.sorted))
+        print('Values: ', end='')
         if self.head is None:
-            print('Empty list.')
+            print('None')
             return
         
         current_node = self.head
-        while current_node is not None:
-            print(current_node.value)
+        while current_node.next is not None:
+            print(current_node.value, end=' ')
             current_node = current_node.next
+        print(current_node.value)
     
 
 

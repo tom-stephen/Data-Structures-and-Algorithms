@@ -4,23 +4,27 @@ class SinglyLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
+        self.sorted = False
         self.length = 0
     
     # Overload constructor with a Node object argument to use as head
     def __init__(self, head):
         self.head = head
         self.tail = head
+        self.sorted = False
         self.length = 1
 
     def insertHead(self, node):
         node.next = self.head
         self.head = node
         self.length += 1
+        self.sorted = False
     
     def insertTail(self, node):
         self.tail.next = node
         self.tail = node
         self.length += 1
+        self.sorted = False
 
     def insert(self, node, index):
         if index == 0:
@@ -34,6 +38,7 @@ class SinglyLinkedList:
             node.next = current_node.next
             current_node.next = node
             self.length += 1
+            self.sorted = False
 
     def sort(self):
         current = self.head
@@ -50,6 +55,7 @@ class SinglyLinkedList:
                     next_node.value = temp
                 next_node = next_node.next
             current = current.next
+        self.sorted = True
     
     def SortedInsert(self, node):
         # must check if listed is sorted first. if it is not, then call sort()
@@ -57,6 +63,7 @@ class SinglyLinkedList:
             self.head = node
             self.tail = node
             self.length += 1
+            self.sorted = True
             return
         
         # check if the list is sorted
@@ -70,21 +77,23 @@ class SinglyLinkedList:
         # insert the node
         if node.value < self.head.value:
             self.insertHead(node)
+            self.sorted = True
             return
         
         if node.value > self.tail.value:
             self.insertTail(node)
+            self.sorted = True
             return
         
-        current = self.head
-        while current.next is not None:
-            if node.value < current.value:
-                self.insertHead(node)
+        current_node = self.head
+        while current_node.next is not None:
+            if current_node.value < node.value and current_node.next.value > node.value:
+                node.next = current_node.next
+                current_node.next = node
+                self.length += 1
+                self.sorted = True
                 return
-            elif node.value > current.value and node.value < current.next.value:
-                self.insert(node, current.value)
-                return
-            current = current.next    
+            current_node = current_node.next  
 
     def Search(self, node):
         current_node = self.head
@@ -136,8 +145,17 @@ class SinglyLinkedList:
         self.length = 0
     
     def Print(self):
+        # print the length, sorted status, and values of the list
+        print('Length: ' + str(self.length))
+        print('Sorted: ' + str(self.sorted))
+        print('Values: ', end='')
+        if self.head is None:
+            print('None')
+            return
+        
         current_node = self.head
-        while current_node is not None:
-            print(current_node.value)
+        while current_node.next is not None:
+            print(current_node.value, end=' ')
             current_node = current_node.next
+        print(current_node.value)
     

@@ -137,105 +137,242 @@ def test_CDLL():
     # test the is empty method
     assert cdll.is_empty() == True
 
-# This needs to be changed
+# i think this is implemented but this needs to be CHECKED
 import mylib.datastructures.linear.DLL as DLL
 def test_DLL():
-    # test the doubly linked list
-    dll = DLL()
+    from mylib.datastructures.nodes.Doubly_linked_Node import Node
+    from mylib.datastructures.linear.DLL import DoublyLinkedList
 
-    # insert elements into the list
-    dll.add_node(10)
-    dll.add_node(20)
-    dll.add_node(30)
-    dll.add_node(40)
-    dll.add_node(25)
-    dll.add_node(15)
 
-    # test the remove node method
-    dll.remove_node(10)
-    dll.__len__ == 5
-    dll.remove_node(15)
-    dll.__len__ == 4
-    dll.remove_node(25)
-    dll.__len__ == 3
-    dll.remove_node(30)
-    dll.__len__ == 2
-    dll.remove_node(40)
-    dll.__len__ == 1
-    dll.remove_node(20)
-    dll.__len__ == 0
+    def insertHead_test():
+        dll = DoublyLinkedList()
+        node1 = Node(1)
+        node2 = Node(2)
+        dll.insertHead(node1)
+        dll.insertHead(node2)
+        assert dll.head == node2
+        assert dll.tail == node1
+        assert dll.length == 2
 
-    # test the add node method
-    dll.add_node(10)
-    dll.add_node(20)
-    dll.add_node(30)
-    dll.add_node(40)
-    dll.add_node(25)
-    dll.add_node(15)
-    
-    # test the peek
-    assert dll.peek() == 10
 
-    # test the remove method
-    assert dll.remove() == 10
-    assert dll.remove() == 20
-    assert dll.remove() == 30
-    assert dll.remove() == 40
-    assert dll.remove() == 25
-    assert dll.remove() == 15
+    def insertTail_test():
+        dll = DoublyLinkedList()
+        node1 = Node(1)
+        node2 = Node(2)
+        dll.insertTail(node1)
+        dll.insertTail(node2)
+        assert dll.head == node1
+        assert dll.tail == node2
+        assert dll.length == 2
 
-    # test the is empty method
-    assert dll.is_empty() == True
 
-# This needs to be changed
+    def insert_test():
+        dll = DoublyLinkedList()
+        node1 = Node(1)
+        node2 = Node(2)
+        node3 = Node(3)
+        dll.insertTail(node1)
+        dll.insertTail(node3)
+        dll.insert(node2, 1)
+        assert dll.head == node1
+        assert dll.tail == node3
+        assert dll.length == 3
+
+
+    def sort_test():
+        dll = DoublyLinkedList()
+        node1 = Node(1)
+        node2 = Node(2)
+        node3 = Node(3)
+        dll.insertTail(node3)
+        dll.insertTail(node1)
+        dll.insertTail(node2)
+        dll.sort()
+        assert dll.head == node1
+        assert dll.tail == node3
+
+
+    def sortedInsert_test():
+        dll = DoublyLinkedList()
+        node1 = Node(1)
+        node2 = Node(2)
+        node3 = Node(3)
+        dll.sortedInsert(node3)
+        dll.sortedInsert(node1)
+        dll.sortedInsert(node2)
+        assert dll.head == node1
+        assert dll.tail == node3
+        assert dll.length == 3
+
+
+    def search_test():
+        dll = DoublyLinkedList()
+        node1 = Node(1)
+        node2 = Node(2)
+        node3 = Node(3)
+        dll.insertTail(node1)
+        dll.insertTail(node2)
+        dll.insertTail(node3)
+        assert dll.search(2) == node2
+        assert dll.search(4) is None
+
+
+    def deleteHead_test():
+        dll = DoublyLinkedList()
+        node1 = Node(1)
+        node2 = Node(2)
+        dll.insertTail(node1)
+        dll.insertTail(node2)
+        dll.deleteHead()
+        assert dll.head == node2
+        assert dll.tail == node2
+        assert dll.length == 1
+
+
+    def deleteTail_test():
+        dll = DoublyLinkedList()
+        node1 = Node(1)
+        node2 = Node(2)
+        dll.insertTail(node1)
+        dll.insertTail(node2)
+        dll.deleteTail()
+        assert dll.head == node1
+        assert dll.tail == node1
+        assert dll.length == 1
+
+
+    def delete_test():
+        dll = DoublyLinkedList()
+        node1 = Node(1)
+        node2 = Node(2)
+        node3 = Node(3)
+        dll.insertTail
+
+    # run the tests above
+    insertHead_test()
+    insertTail_test()
+    insert_test()
+    sort_test()
+    sortedInsert_test()
+    search_test()
+    deleteHead_test()
+    deleteTail_test()
+    delete_test()
+
+
+# i think this is implemented but this needs to be CHECKED
 import mylib.datastructures.linear.SLL as SLL
 def test_SLL():
-    # test the singly linked list
-    sll = SLL()
+    from mylib.datastructures.nodes.Single_linked_Node import Node
+    from mylib.datastructures.linear.SLL import SinglyLinkedList
 
-    # insert elements into the list
-    sll.add_node(10)
-    sll.add_node(20)
-    sll.add_node(30)
-    sll.add_node(40)
-    sll.add_node(25)
-    sll.add_node(15)
+    # Test the insertHead() method
+    linked_list = SinglyLinkedList()
+    linked_list.insertHead(Node(1))
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 1
+    assert linked_list.length == 1
 
-    # test the remove node method
-    sll.remove_node(10)
-    sll.__len__ == 5
-    sll.remove_node(15)
-    sll.__len__ == 4
-    sll.remove_node(25)
-    sll.__len__ == 3
-    sll.remove_node(30)
-    sll.__len__ == 2
-    sll.remove_node(40)
-    sll.__len__ == 1
-    sll.remove_node(20)
-    sll.__len__ == 0
+    linked_list.insertHead(Node(2))
+    assert linked_list.head.value == 2
+    assert linked_list.tail.value == 1
+    assert linked_list.length == 2
 
-    # test the add node method
-    sll.add_node(10)
-    sll.add_node(20)
-    sll.add_node(30)
-    sll.add_node(40)
-    sll.add_node(25)
-    sll.add_node(15)
-    
-    # test the peek
-    assert sll.peek() == 10
+    # Test the insertTail() method
+    linked_list = SinglyLinkedList()
+    linked_list.insertTail(Node(1))
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 1
+    assert linked_list.length == 1
 
-    # test the remove method
-    assert sll.remove() == 10
-    assert sll.remove() == 20
-    assert sll.remove() == 30
-    assert sll.remove() == 40
-    assert sll.remove() == 25
-    assert sll.remove() == 15
+    linked_list.insertTail(Node(2))
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 2
+    assert linked_list.length == 2
 
-    # test the is empty method
-    assert sll.is_empty() == True
+    # Test the insert() method
+    linked_list = SinglyLinkedList()
+    linked_list.insert(Node(1), 0)
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 1
+    assert linked_list.length == 1
+
+    linked_list.insert(Node(2), 1)
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 2
+    assert linked_list.length == 2
+
+    linked_list.insert(Node(3), 1)
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 2
+    assert linked_list.length == 3
+
+    # Test the sort() method
+    linked_list = SinglyLinkedList()
+    linked_list.insertHead(Node(2))
+    linked_list.insertHead(Node(1))
+    linked_list.insertTail(Node(4))
+    linked_list.insertTail(Node(3))
+    linked_list.sort()
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 4
+    assert linked_list.length == 4
+
+    # Test the sortedInsert() method
+    linked_list = SinglyLinkedList()
+    linked_list.sortedInsert(Node(2))
+    assert linked_list.head.value == 2
+    assert linked_list.tail.value == 2
+    assert linked_list.length == 1
+
+    linked_list.sortedInsert(Node(1))
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 2
+    assert linked_list.length == 2
+
+    linked_list.sortedInsert(Node(3))
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 3
+    assert linked_list.length == 3
+
+    # Test the search() method
+    linked_list = SinglyLinkedList()
+    linked_list.insertTail(Node(1))
+    linked_list.insertTail(Node(2))
+    linked_list.insertTail(Node(3))
+    assert linked_list.search(Node(2)).value == 2
+    assert linked_list.search(Node(4)) is None
+
+    # Test the deleteHead() method
+    linked_list = SinglyLinkedList()
+    linked_list.insertTail(Node(1))
+    linked_list.insertTail(Node(2))
+    linked_list.insertTail(Node(3))
+    assert linked_list.deleteHead() == 1
+    assert linked_list.head.value == 2
+    assert linked_list.tail.value == 3
+    assert linked_list.length == 2
+
+    # Test the deleteTail() method
+    linked_list = SinglyLinkedList()
+    linked_list.insertTail(Node(1))
+    linked_list.insertTail(Node(2))
+    linked_list.insertTail(Node(3))
+    assert linked_list.deleteTail() == 3
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 2
+    assert linked_list.length == 2
+
+    # Test the delete() method
+    linked_list = SinglyLinkedList()
+    linked_list.insertTail(Node(1)) 
+    linked_list.insertTail(Node(2))
+    linked_list.insertTail(Node(3))
+    assert linked_list.delete(Node(2)) == 2
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 3
+    assert linked_list.length == 2
+
 
 # This needs to be changed
 import mylib.datastructures.linear.CSLL as CSLL

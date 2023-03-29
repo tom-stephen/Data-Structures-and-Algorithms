@@ -3,19 +3,22 @@ from nodes.Single_linked_Node import Node
 # NOTE: i dont know if this needs to have a max size or not. if there is then this will need to be changed
 
 class CircularLinkedList:
-    def __init__(self):
-        self.head = None
-        self.tail = None
-        self.sorted = False
-        self.length = 0
     
-    def __init__(self, node):
-        self.head = node
-        self.tail = node
-        self.sorted = False
-        self.length = 1
+    def __init__(self, node = None):
+        if node:
+            node = Node(node)
+            self.head = node
+            self.tail = node
+            self.sorted = False
+            self.length = 1
+        else:
+            self.head = None
+            self.tail = None
+            self.sorted = False
+            self.length = 0
 
     def insertHead(self, node):
+        node = Node(node)
         if self.head is None:
             self.head = node
             self.tail = node
@@ -26,6 +29,7 @@ class CircularLinkedList:
         self.sorted = False
 
     def insertTail(self, node):
+        node = Node(node)
         if self.head is None:
             self.head = node
             self.tail = node
@@ -36,6 +40,7 @@ class CircularLinkedList:
         self.sorted = False
 
     def insert(self, node, index):
+        node = Node(node)
         if self.head is None:
             self.head = node
             self.tail = node
@@ -78,6 +83,7 @@ class CircularLinkedList:
     def sortedInsert(self, node):
         # check if list is sorted
         if self.head is None:
+            node = Node(node)
             self.head = node
             self.tail = node
             self.length += 1
@@ -96,6 +102,7 @@ class CircularLinkedList:
             self.sorted = True
             return
         
+        node = Node(node)
         current_node = self.head
         while current_node.next is not None:
             if current_node.value <= node.value and current_node.next.value >= node.value:
@@ -115,6 +122,7 @@ class CircularLinkedList:
         if self.head is None:
             return None
         
+        node = Node(node)
         current_node = self.head
         while current_node.next is not None:
             if current_node == node:
@@ -151,15 +159,16 @@ class CircularLinkedList:
         self.length -= 1
 
     def delete(self, node):
+        node = Node(node)
         if self.head is None:
             return
         
         if self.head == node:
-            self.DeleteHead()
+            self.deleteHead()
             return
         
         if self.tail == node:
-            self.DeleteTail()
+            self.deleteTail()
             return
         
         current_node = self.head

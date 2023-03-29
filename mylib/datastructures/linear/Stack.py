@@ -1,21 +1,47 @@
+from SLL import SinglyLinkedList
 
-class Stack:
+
+class Stack (SinglyLinkedList):
     def __init__(self):
-        self.items = []
+        super().__init__()
 
-    def push(self, item):
-        self.items.append(item)
+    def __init__(self, head):
+        super().__init__(head)
 
+    def DeleteTail(self):
+        pass
+
+    def sort(self):
+        pass
+
+    def insertTail(self, node):
+        pass
+
+    def insert(self, node, index):
+        pass
+
+    def SortedInsert(self, node):
+        pass
+
+    def push(self, node):
+        self.insertHead(node)
+    
     def pop(self):
-        if not self.is_empty():
-            return self.items.pop()
-
+        return self.removeHead()
+    
     def peek(self):
-        if not self.is_empty():
-            return self.items[-1]
-
-    def is_empty(self):
-        return len(self.items) == 0
-
-    def size(self):
-        return len(self.items)
+        return self.head.value
+    
+    def Print(self):
+        print('length: ', self.length)
+        print('sorted: ', self.sorted)
+        print('Values: ', end='')
+        if self.head is None:
+            print('None')
+            return
+        
+        current_node = self.head
+        while current_node is not None:
+            print(current_node.value)
+            current_node = current_node.next
+        

@@ -1,22 +1,26 @@
 from nodes.Doubly_linked_Node import Node
 
 class DoublyLinkedList:
-
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.sorted = False
+        self.length = 0
+    
     def __init__(self, node=None):
-        if node:
-            node = Node(node)
-            self.head = node
-            self.tail = node
-            self.length = 1
-            self.sorted = False
-        else:
+        if node is None:
             self.head = None
             self.tail = None
             self.sorted = False
             self.length = 0
+            return
+        else:
+            self.head = node
+            self.tail = node
+            self.sorted = False
+            self.length = 1
 
     def insertHead(self, node):
-        node = Node(node)
         if self.head is None:
             self.head = node
             self.tail = node
@@ -28,7 +32,6 @@ class DoublyLinkedList:
         self.sorted = False    
     
     def insertTail(self, node):
-        node = Node(node)
         if self.head is None:
             self.head = node
             self.tail = node
@@ -47,7 +50,6 @@ class DoublyLinkedList:
             self.insertTail(node)
             return
         
-        node = Node(node)
         current_node = self.head
         for i in range(index):
             current_node = current_node.next
@@ -72,7 +74,6 @@ class DoublyLinkedList:
         self.sorted = True
 
     def sortedInsert(self, node):
-        node = Node(node)
         if self.head is None:
             self.head = node
             self.tail = node

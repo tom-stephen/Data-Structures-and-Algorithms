@@ -4,10 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pytest
 
-from node.Doubly_linked_Node import Node as DNode
-from node.Singly_linked_Node import Node as SNode
-from node.Tree_Node import Node as TNode
-
 import mylib.datastructures.heap.VBH_Max as MaxHeap
 def test_VBH_Max():
     # create a max heap object
@@ -96,33 +92,48 @@ def test_CDLL():
     cdll = CDLL()
 
     # insert elements into the list
-    for i in range(10):
-        node = DNode(i)
-        cdll.insert(node, i)
+    cdll.add_node(10)
+    cdll.add_node(20)
+    cdll.add_node(30)
+    cdll.add_node(40)
+    cdll.add_node(25)
+    cdll.add_node(15)
+
+    # test the remove node method
+    cdll.remove_node(10)
+    cdll.__len__ == 5
+    cdll.remove_node(15)
+    cdll.__len__ == 4
+    cdll.remove_node(25)
+    cdll.__len__ == 3
+    cdll.remove_node(30)
+    cdll.__len__ == 2
+    cdll.remove_node(40)
+    cdll.__len__ == 1
+    cdll.remove_node(20)
+    cdll.__len__ == 0
+
+    # test the add node method
+    cdll.add_node(10)
+    cdll.add_node(20)
+    cdll.add_node(30)
+    cdll.add_node(40)
+    cdll.add_node(25)
+    cdll.add_node(15)
     
-    # check to see if length is correct
-    assert cdll.length == 10
+    # test the peek
+    assert cdll.peek() == 10
 
-    # test the insertHead method
-    node = DNode(10)
-    cdll.insertHead(node)
-    assert cdll.head.value == 10
+    # test the remove method
+    assert cdll.remove() == 10
+    assert cdll.remove() == 20
+    assert cdll.remove() == 30
+    assert cdll.remove() == 40
+    assert cdll.remove() == 25
+    assert cdll.remove() == 15
 
-    # test the insertTail method
-    node = DNode(11)
-    cdll.insertTail(node)
-    assert cdll.tail.value == 11
-
-    # test the deleteHead method
-    cdll.deleteHead()
-    assert cdll.head.value == 0
-
-    # test the deleteTail method
-    cdll.deleteTail()
-    assert cdll.tail.value == 9
-
-    
-
+    # test the is empty method
+    assert cdll.is_empty() == True
 
 import mylib.datastructures.linear.DLL as DLL
 def test_DLL():

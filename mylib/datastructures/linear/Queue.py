@@ -2,10 +2,8 @@ from SLL import SinglyLinkedList
 
 
 class Queue(SinglyLinkedList):
-    def __init__(self):
-        super().__init__()
 
-    def __init__(self, head):
+    def __init__(self, head=None):
         super().__init__(head)
 
     def insertHead(self):

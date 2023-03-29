@@ -2,10 +2,8 @@ from SLL import SinglyLinkedList
 
 
 class Stack (SinglyLinkedList):
-    def __init__(self):
-        super().__init__()
 
-    def __init__(self, head):
+    def __init__(self, head=None):
         super().__init__(head)
 
     def deleteTail(self):

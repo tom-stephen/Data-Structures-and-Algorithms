@@ -1,31 +1,28 @@
-from mylib.datastructures.nodes.Single_linked_Node import Node
+from nodes.Single_linked_Node import Node
 
 class SinglyLinkedList:
-
-    def __init__(self, node=None):
-        if node:
-            newNode = Node(node)
-            self.head = newNode
-            self.tail = newNode
-            self.length = 1
-            self.sorted = False
-        else:
+    def __init__(self, head = None):
+        if head is None:
             self.head = None
             self.tail = None
             self.sorted = False
             self.length = 0
+            return
+        else:
+            self.head = head
+            self.tail = head
+            self.sorted = False
+            self.length = 1
 
     def insertHead(self, node):
-        newNode = Node(node)
-        newNode.next = self.head
-        self.head = newNode
+        node.next = self.head
+        self.head = node
         self.length += 1
         self.sorted = False
     
     def insertTail(self, node):
-        newNode = Node(node)
-        self.tail.next = newNode
-        self.tail = newNode
+        self.tail.next = node
+        self.tail = node
         self.length += 1
         self.sorted = False
 
@@ -35,12 +32,11 @@ class SinglyLinkedList:
         elif index == self.length:
             self.insertTail(node)
         else:
-            newNode = Node(node)
             current_node = self.head
             for i in range(index - 1):
                 current_node = current_node.next
-            newNode.next = current_node.next
-            current_node.next = newNode
+            node.next = current_node.next
+            current_node.next = node
             self.length += 1
             self.sorted = False
 
@@ -62,7 +58,6 @@ class SinglyLinkedList:
         self.sorted = True
     
     def sortedInsert(self, node):
-        node = Node(node)
         # must check if listed is sorted first. if it is not, then call sort()
         if self.head is None:
             self.head = node
@@ -101,7 +96,6 @@ class SinglyLinkedList:
             current_node = current_node.next  
 
     def search(self, node):
-        node = Node(node)
         current_node = self.head
         while current_node is not None:
             if current_node.value == node.value:
@@ -136,7 +130,6 @@ class SinglyLinkedList:
         return deleted_node.value
 
     def delete(self, node):
-        node = Node(node)
         if self.head is None:
             return
         

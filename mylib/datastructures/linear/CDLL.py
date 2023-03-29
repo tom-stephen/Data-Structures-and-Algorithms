@@ -4,17 +4,18 @@ from nodes.Doubly_linked_Node import Node
 
 class CircularDoublyLinkedList:
 
-    def __init__(self):
-        self.head = None
-        self.tail = None
-        self.sorted = False
-        self.length = 0
-    
-    def __init__(self, node):
-        self.head = node
-        self.tail = node
-        self.sorted = False
-        self.length = 1
+    def __init__(self, node=None):
+        if node is None:
+            self.head = None
+            self.tail = None
+            self.sorted = False
+            self.length = 0
+            return
+        else:
+            self.head = node
+            self.tail = node
+            self.sorted = False
+            self.length = 1
 
     def insertHead(self, node):
         if self.head is None:

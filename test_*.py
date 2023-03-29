@@ -45,6 +45,7 @@ def test_VBH_Max():
     # test that the heap is empty after removing all elements
     assert max_heap.is_empty() == True
 
+# This needs to be changed
 import mylib.datastructures.heap.VBH_Min as MinHeap
 def test_VBH_Min():
     # create a min heap object
@@ -86,6 +87,7 @@ def test_VBH_Min():
     # test that the heap is empty after removing all elements
     assert min_heap.is_empty() == True
 
+# This needs to be changed
 import mylib.datastructures.linear.CDLL as CDLL
 def test_CDLL():
     # test the circulat doubly linked list
@@ -135,6 +137,7 @@ def test_CDLL():
     # test the is empty method
     assert cdll.is_empty() == True
 
+# This needs to be changed
 import mylib.datastructures.linear.DLL as DLL
 def test_DLL():
     # test the doubly linked list
@@ -184,6 +187,7 @@ def test_DLL():
     # test the is empty method
     assert dll.is_empty() == True
 
+# This needs to be changed
 import mylib.datastructures.linear.SLL as SLL
 def test_SLL():
     # test the singly linked list
@@ -233,6 +237,7 @@ def test_SLL():
     # test the is empty method
     assert sll.is_empty() == True
 
+# This needs to be changed
 import mylib.datastructures.linear.CSLL as CSLL
 def test_CSLL():
     # test the circular singly linked list
@@ -285,6 +290,7 @@ def test_CSLL():
     # test the is empty method
     assert csll.is_empty() == True
 
+# This needs to be changed
 import mylib.datastructures.linear.Stack as STACK
 def test_STACK():
     # test the stack
@@ -317,6 +323,7 @@ def test_STACK():
     # test the is empty method
     assert stack.is_empty() == True
 
+# This needs to be changed
 import mylib.datastructures.linear.Queue as QUEUE
 def test_QUEUE():
     # test the queue

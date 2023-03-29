@@ -57,7 +57,7 @@ class SinglyLinkedList:
             current = current.next
         self.sorted = True
     
-    def SortedInsert(self, node):
+    def sortedInsert(self, node):
         # must check if listed is sorted first. if it is not, then call sort()
         if self.head is None:
             self.head = node
@@ -95,7 +95,7 @@ class SinglyLinkedList:
                 return
             current_node = current_node.next  
 
-    def Search(self, node):
+    def search(self, node):
         current_node = self.head
         while current_node is not None:
             if current_node.value == node.value:
@@ -103,27 +103,33 @@ class SinglyLinkedList:
             current_node = current_node.next
         return None
     
-    def DeleteHead(self):
+    def deleteHead(self):
         if self.head is None:
-            return
+            return None
+        # return the value of the deleted node
+        deleted_node = self.head
         self.head = self.head.next
         self.length -= 1
+        return deleted_node.value
     
-    def DeleteTail(self):
+    def deleteTail(self):
         if self.head is None:
-            return
+            return None
         
         if self.head.next is None:
             self.head = None
-            return
+            return None
         
         current_node = self.head
         while current_node.next.next is not None:
             current_node = current_node.next
+        # return the value of the deleted node
+        deleted_node = current_node.next
         current_node.next = None
         self.length -= 1
+        return deleted_node.value
 
-    def Delete(self, node):
+    def delete(self, node):
         if self.head is None:
             return
         
@@ -139,12 +145,12 @@ class SinglyLinkedList:
                 return
             current_node = current_node.next
 
-    def Clear(self):
+    def clear(self):
         self.head = None
         self.tail = None
         self.length = 0
     
-    def Print(self):
+    def print(self):
         # print the length, sorted status, and values of the list
         print('Length: ' + str(self.length))
         print('Sorted: ' + str(self.sorted))

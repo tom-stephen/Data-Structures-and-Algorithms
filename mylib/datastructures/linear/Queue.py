@@ -1,17 +1,48 @@
+from SLL import SinglyLinkedList
 
-class Queue:
+
+class Queue(SinglyLinkedList):
     def __init__(self):
-        self.items = []
+        super().__init__()
+
+    def __init__(self, head):
+        super().__init__(head)
+
+    def insertHead(self):
+        pass
+
+    def deleteTail(self):
+        pass
+
+    def sort(self):
+        pass
+
+    def insert(self, node, index):
+        pass
+
+    def sortedInsert(self, node):
+        pass
 
     def enqueue(self, item):
-        self.items.insert(0, item)
+        self.insertTail(item)
 
     def dequeue(self):
-        if not self.is_empty():
-            return self.items.pop()
-
-    def is_empty(self):
-        return len(self.items) == 0
+        return self.deleteHead()
 
     def size(self):
-        return len(self.items)
+        return self.length
+    
+    def peek(self):
+        return self.head.value
+    
+    def print(self):
+        print('length: ', self.length)
+        print('Values: ', end='')
+        if self.head is None:
+            print('None')
+            return
+        
+        current_node = self.head
+        while current_node is not None:
+            print(current_node.value)
+            current_node = current_node.next

@@ -8,7 +8,7 @@ class Stack (SinglyLinkedList):
     def __init__(self, head):
         super().__init__(head)
 
-    def DeleteTail(self):
+    def deleteTail(self):
         pass
 
     def sort(self):
@@ -20,14 +20,14 @@ class Stack (SinglyLinkedList):
     def insert(self, node, index):
         pass
 
-    def SortedInsert(self, node):
+    def sortedInsert(self, node):
         pass
 
     def push(self, node):
         self.insertHead(node)
     
     def pop(self):
-        return self.removeHead()
+        return self.deleteHead()
     
     def peek(self):
         return self.head.value

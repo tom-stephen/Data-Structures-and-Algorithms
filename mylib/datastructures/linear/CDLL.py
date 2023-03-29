@@ -115,7 +115,7 @@ class CircularDoublyLinkedList:
             current_node = current_node.next
         return None
     
-    def DeleteHead(self):
+    def deleteHead(self):
         if self.head is None:
             return None
         
@@ -129,7 +129,7 @@ class CircularDoublyLinkedList:
         self.head.prev = None
         self.length -= 1
 
-    def DeleteTail(self):
+    def deleteTail(self):
         if self.head is None:
             return None
         
@@ -143,7 +143,7 @@ class CircularDoublyLinkedList:
         self.tail.next = None
         self.length -= 1
 
-    def Delete(self, node):
+    def delete(self, node):
         if self.head is None:
             return None
         
@@ -170,7 +170,7 @@ class CircularDoublyLinkedList:
         self.length = 0
         self.sorted = False
 
-    def Print(self):
+    def print(self):
         # print the length, sorted status, and values of the list
         print('Length: ' + str(self.length))
         print('Sorted: ' + str(self.sorted))

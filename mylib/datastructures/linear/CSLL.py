@@ -75,7 +75,7 @@ class CircularLinkedList:
             current_node = current_node.next
         self.sorted = True
 
-    def SortedInsert(self, node):
+    def sortedInsert(self, node):
         # check if list is sorted
         if self.head is None:
             self.head = node
@@ -111,7 +111,7 @@ class CircularLinkedList:
             self.sorted = True
             return
         
-    def Search(self, node):
+    def search(self, node):
         if self.head is None:
             return None
         
@@ -124,7 +124,7 @@ class CircularLinkedList:
             return current_node
         return None
 
-    def DeleteHead(self):
+    def deleteHead(self):
         if self.head is None:
             return
         
@@ -135,7 +135,7 @@ class CircularLinkedList:
             self.head = self.head.next
         self.length -= 1
 
-    def DeleteTail(self):
+    def deleteTail(self):
         if self.head is None:
             return
         
@@ -150,7 +150,7 @@ class CircularLinkedList:
             self.tail = current_node
         self.length -= 1
 
-    def Delete(self, node):
+    def delete(self, node):
         if self.head is None:
             return
         
@@ -170,13 +170,13 @@ class CircularLinkedList:
                 return
             current_node = current_node.next
         
-    def Clear(self):
+    def clear(self):
         self.head = None
         self.tail = None
         self.sorted = False
         self.length = 0
 
-    def Print(self):
+    def print(self):
         # print the length, sorted status, and values of the list
         print('Length: ' + str(self.length))
         print('Sorted: ' + str(self.sorted))

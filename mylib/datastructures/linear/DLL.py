@@ -104,7 +104,7 @@ class DoublyLinkedList:
                 return
             current_node = current_node.next
 
-    def Search(self, value):
+    def search(self, value):
         if self.head is None:
             return None
         
@@ -115,7 +115,7 @@ class DoublyLinkedList:
             current_node = current_node.next
         return None
     
-    def DeleteHead(self):
+    def deleteHead(self):
         if self.head is None:
             return None
         
@@ -127,7 +127,7 @@ class DoublyLinkedList:
             self.head.prev = None
         self.length -= 1
 
-    def DeleteTail(self):
+    def deleteTail(self):
         if self.head is None:
             return None
         
@@ -139,7 +139,7 @@ class DoublyLinkedList:
             self.tail.next = None
         self.length -= 1
 
-    def Delete(self, node):
+    def delete(self, node):
         if self.head is None:
             return None
         
@@ -160,13 +160,13 @@ class DoublyLinkedList:
                 return
             current_node = current_node.next
 
-    def Clear(self):
+    def clear(self):
         self.head = None
         self.tail = None
         self.sorted = False
         self.length = 0
     
-    def Print(self):
+    def print(self):
         # print the length, sorted status, and values of the list
         print('Length: ' + str(self.length))
         print('Sorted: ' + str(self.sorted))

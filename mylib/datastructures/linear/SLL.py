@@ -1,4 +1,4 @@
-from nodes.Single_linked_Node import Node
+from mylib.datastructures.nodes.Single_linked_Node import Node
 
 class SinglyLinkedList:
     def __init__(self, head = None):
@@ -19,18 +19,29 @@ class SinglyLinkedList:
         self.head = node
         self.length += 1
         self.sorted = False
+        return
     
     def insertTail(self, node):
-        self.tail.next = node
-        self.tail = node
-        self.length += 1
-        self.sorted = False
+        if self.head is None:
+            self.head = node
+            self.tail = node
+            self.length += 1
+            self.sorted = False
+            return
+        else:
+            self.tail.next = node
+            self.tail = node
+            self.length += 1
+            self.sorted = False
+            return
 
     def insert(self, node, index):
         if index == 0:
             self.insertHead(node)
+            return
         elif index == self.length:
             self.insertTail(node)
+            return
         else:
             current_node = self.head
             for i in range(index - 1):
@@ -39,6 +50,7 @@ class SinglyLinkedList:
             current_node.next = node
             self.length += 1
             self.sorted = False
+            return
 
     def sort(self):
         current = self.head
@@ -56,6 +68,7 @@ class SinglyLinkedList:
                 next_node = next_node.next
             current = current.next
         self.sorted = True
+        return
     
     def sortedInsert(self, node):
         # must check if listed is sorted first. if it is not, then call sort()
@@ -134,7 +147,7 @@ class SinglyLinkedList:
             return
         
         if self.head.value == node.value:
-            self.DeleteHead()
+            self.deleteHead()
             return
         
         current_node = self.head
@@ -149,6 +162,8 @@ class SinglyLinkedList:
         self.head = None
         self.tail = None
         self.length = 0
+        self.sorted = False
+        return
     
     def print(self):
         # print the length, sorted status, and values of the list
@@ -164,4 +179,5 @@ class SinglyLinkedList:
             print(current_node.value, end=' ')
             current_node = current_node.next
         print(current_node.value)
+        return
     

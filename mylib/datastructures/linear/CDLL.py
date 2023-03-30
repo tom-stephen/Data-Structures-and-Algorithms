@@ -1,4 +1,4 @@
-from nodes.Doubly_linked_Node import Node
+from mylib.datastructures.nodes.Doubly_linked_Node import Node
 
 # NOTE: i dont know if this needs to have a max size or not. if there is then this will need to be changed
 

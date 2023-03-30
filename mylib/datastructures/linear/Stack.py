@@ -30,9 +30,8 @@ class Stack (SinglyLinkedList):
     def peek(self):
         return self.head.value
     
-    def Print(self):
+    def print(self):
         print('length: ', self.length)
-        print('sorted: ', self.sorted)
         print('Values: ', end='')
         if self.head is None:
             print('None')

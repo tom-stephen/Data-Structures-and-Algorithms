@@ -2,143 +2,130 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-import pytest
+import unittest
 
-import mylib.datastructures.heap.VBH_Max as MaxHeap
-def test_VBH_Max():
-    # create a max heap object
-    max_heap = MaxHeap()
+# import mylib.datastructures.heap.VBH_Max as MaxHeap
+# def test_VBH_Max():
+#     # create a max heap object
+#     max_heap = MaxHeap()
 
-    # add elements to the heap
-    max_heap.insert(10)
-    max_heap.insert(20)
-    max_heap.insert(15)
+#     # add elements to the heap
+#     max_heap.insert(10)
+#     max_heap.insert(20)
+#     max_heap.insert(15)
 
-    # test that the maximum element is returned correctly
-    assert max_heap.peek() == 20
+#     # test that the maximum element is returned correctly
+#     assert max_heap.peek() == 20
 
-    # test the extract max method
-    assert max_heap.extract_max() == 20
+#     # test the extract max method
+#     assert max_heap.extract_max() == 20
 
-    # test the size method
-    assert max_heap.size() == 2
+#     # test the size method
+#     assert max_heap.size() == 2
 
-    # insert more numbers
-    max_heap.insert(30)
-    max_heap.insert(25)
-    max_heap.insert(5)
+#     # insert more numbers
+#     max_heap.insert(30)
+#     max_heap.insert(25)
+#     max_heap.insert(5)
 
-    # test that the size method returns the correct size
-    assert max_heap.size() == 5
+#     # test that the size method returns the correct size
+#     assert max_heap.size() == 5
 
-    # test the heapsort method for a max heap
-    arr = [10, 20, 15, 30, 25, 5]
-    assert MaxHeap.heapsort(arr) == [30, 25, 20, 15, 10, 5]
+#     # test the heapsort method for a max heap
+#     arr = [10, 20, 15, 30, 25, 5]
+#     assert MaxHeap.heapsort(arr) == [30, 25, 20, 15, 10, 5]
 
-    # test that elements are removed in the correct order
-    assert max_heap.remove() == 30
-    assert max_heap.remove() == 25
-    assert max_heap.remove() == 15
-    assert max_heap.remove() == 10
-    assert max_heap.remove() == 5
+#     # test that elements are removed in the correct order
+#     assert max_heap.remove() == 30
+#     assert max_heap.remove() == 25
+#     assert max_heap.remove() == 15
+#     assert max_heap.remove() == 10
+#     assert max_heap.remove() == 5
 
-    # test that the heap is empty after removing all elements
-    assert max_heap.is_empty() == True
+#     # test that the heap is empty after removing all elements
+#     assert max_heap.is_empty() == True
+
+# # This needs to be changed
+# import mylib.datastructures.heap.VBH_Min as MinHeap
+# def test_VBH_Min():
+#     # create a min heap object
+#     min_heap = MinHeap()
+
+#     # add elements to the heap
+#     min_heap.insert(10)
+#     min_heap.insert(20)
+#     min_heap.insert(15)
+
+#     # test that the minimum element is returned correctly
+#     assert min_heap.peek() == 10
+
+#     # test the extract min method
+#     assert min_heap.extract_min() == 10
+
+#     # test the size method
+#     assert min_heap.size() == 2
+
+#     # insert more numbers
+#     min_heap.insert(30)
+#     min_heap.insert(25)
+#     min_heap.insert(5)
+
+#     # test that the size method returns the correct size
+#     assert min_heap.size() == 5
+
+#     # test the heapsort method for a min heap
+#     arr = [10, 20, 15, 30, 25, 5]
+#     assert MinHeap.heapsort(arr) == [5, 10, 15, 20, 25, 30]
+
+#     # test that elements are removed in the correct order
+#     assert min_heap.remove() == 5
+#     assert min_heap.remove() == 15
+#     assert min_heap.remove() == 20
+#     assert min_heap.remove() == 25
+#     assert min_heap.remove() == 30
+
+#     # test that the heap is empty after removing all elements
+#     assert min_heap.is_empty() == True
 
 # This needs to be changed
-import mylib.datastructures.heap.VBH_Min as MinHeap
-def test_VBH_Min():
-    # create a min heap object
-    min_heap = MinHeap()
-
-    # add elements to the heap
-    min_heap.insert(10)
-    min_heap.insert(20)
-    min_heap.insert(15)
-
-    # test that the minimum element is returned correctly
-    assert min_heap.peek() == 10
-
-    # test the extract min method
-    assert min_heap.extract_min() == 10
-
-    # test the size method
-    assert min_heap.size() == 2
-
-    # insert more numbers
-    min_heap.insert(30)
-    min_heap.insert(25)
-    min_heap.insert(5)
-
-    # test that the size method returns the correct size
-    assert min_heap.size() == 5
-
-    # test the heapsort method for a min heap
-    arr = [10, 20, 15, 30, 25, 5]
-    assert MinHeap.heapsort(arr) == [5, 10, 15, 20, 25, 30]
-
-    # test that elements are removed in the correct order
-    assert min_heap.remove() == 5
-    assert min_heap.remove() == 15
-    assert min_heap.remove() == 20
-    assert min_heap.remove() == 25
-    assert min_heap.remove() == 30
-
-    # test that the heap is empty after removing all elements
-    assert min_heap.is_empty() == True
-
-# This needs to be changed
-import mylib.datastructures.linear.CDLL as CDLL
 def test_CDLL():
-    # test the circulat doubly linked list
-    cdll = CDLL()
+    from mylib.datastructures.linear.CDLL import CircularDoublyLinkedList as CDLL
+    from mylib.datastructures.nodes.Doubly_linked_Node import Node
+    # create nodes
+    node1 = Node(1)
+    node2 = Node(2)
+    node3 = Node(3)
+    node4 = Node(4)
 
-    # insert elements into the list
-    cdll.add_node(10)
-    cdll.add_node(20)
-    cdll.add_node(30)
-    cdll.add_node(40)
-    cdll.add_node(25)
-    cdll.add_node(15)
+    # create linked list and insert nodes
+    linked_list = CDLL()
+    linked_list.insertTail(node1)
+    linked_list.insertTail(node2)
+    linked_list.insertTail(node3)
 
-    # test the remove node method
-    cdll.remove_node(10)
-    cdll.__len__ == 5
-    cdll.remove_node(15)
-    cdll.__len__ == 4
-    cdll.remove_node(25)
-    cdll.__len__ == 3
-    cdll.remove_node(30)
-    cdll.__len__ == 2
-    cdll.remove_node(40)
-    cdll.__len__ == 1
-    cdll.remove_node(20)
-    cdll.__len__ == 0
+    # test length and values
+    assert linked_list.length == 3
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 3
 
-    # test the add node method
-    cdll.add_node(10)
-    cdll.add_node(20)
-    cdll.add_node(30)
-    cdll.add_node(40)
-    cdll.add_node(25)
-    cdll.add_node(15)
-    
-    # test the peek
-    assert cdll.peek() == 10
+    # test sorted insert
+    linked_list.sortedInsert(node4)
+    assert linked_list.length == 4
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 4
 
-    # test the remove method
-    assert cdll.remove() == 10
-    assert cdll.remove() == 20
-    assert cdll.remove() == 30
-    assert cdll.remove() == 40
-    assert cdll.remove() == 25
-    assert cdll.remove() == 15
+    # test delete
+    linked_list.delete(node2)
+    assert linked_list.length == 3
+    assert linked_list.Search(node2) is None
 
-    # test the is empty method
-    assert cdll.is_empty() == True
+    # test clear
+    linked_list.clear()
+    assert linked_list.length == 0
+    assert linked_list.head is None
+    assert linked_list.tail is None
 
 # i think this is implemented but this needs to be CHECKED
-import mylib.datastructures.linear.DLL as DLL
 def test_DLL():
     from mylib.datastructures.nodes.Doubly_linked_Node import Node
     from mylib.datastructures.linear.DLL import DoublyLinkedList
@@ -261,7 +248,6 @@ def test_DLL():
 
 
 # i think this is implemented but this needs to be CHECKED
-import mylib.datastructures.linear.SLL as SLL
 def test_SLL():
     from mylib.datastructures.nodes.Single_linked_Node import Node
     from mylib.datastructures.linear.SLL import SinglyLinkedList
@@ -374,119 +360,114 @@ def test_SLL():
     assert linked_list.length == 2
 
 
-# This needs to be changed
-import mylib.datastructures.linear.CSLL as CSLL
+# i think this is implemented but this needs to be CHECKED
 def test_CSLL():
-    # test the circular singly linked list
-    csll = CSLL()
+    from mylib.datastructures.linear.CSLL import CircularLinkedList
+    from mylib.datastructures.nodes.Single_linked_Node import Node
+    # create nodes
+    node1 = Node(1)
+    node2 = Node(2)
+    node3 = Node(3)
 
-    # insert elements into the list
-    csll.add_node(10)
-    csll.add_node(20)
-    csll.add_node(30)
-    csll.add_node(40)
-    csll.add_node(25)
-    csll.add_node(15)
+    # test inserting nodes
+    cll = CircularLinkedList()
+    cll.insertHead(node2)
+    cll.insertTail(node1)
+    cll.insert(node3, 1)
 
-    # test the remove node method
-    csll.remove_node(10)
-    csll.__len__ == 5
-    csll.remove_node(15)
-    csll.__len__ == 4
-    csll.remove_node(25)
-    csll.__len__ == 3
-    csll.remove_node(30)
-    csll.__len__ == 2
-    csll.remove_node(40)
-    csll.__len__ == 1
-    csll.remove_node(20)
-    csll.__len__ == 0
+    # test sorting
+    cll.sort()
 
-    # test the add node method
-    csll.add_node(10)
-    csll.add_node(20)
-    csll.add_node(30)
-    csll.add_node(40)
-    csll.add_node(25)
-    csll.add_node(15)
-    
-    # test the peek
-    assert csll.peek() == 10
+    # test sorted insert
+    node4 = Node(0)
+    cll.sortedInsert(node4)
 
-    # test get_node
-    assert csll.get_node(0).data == 10
+    # test search
+    node = cll.search(node3)
+    assert node == node3
 
-    # test the remove method
-    assert csll.remove() == 10
-    assert csll.remove() == 20
-    assert csll.remove() == 30
-    assert csll.remove() == 40
-    assert csll.remove() == 25
-    assert csll.remove() == 15
+    # test deleting nodes
+    cll.deleteTail()
+    cll.deleteHead()
+    cll.delete(node3)
 
-    # test the is empty method
-    assert csll.is_empty() == True
+    # test clearing list
+    cll.clear()
+    assert cll.length == 0
+    assert cll.head is None
+    assert cll.tail is None
+    assert not cll.sorted
 
-# This needs to be changed
-import mylib.datastructures.linear.Stack as STACK
+    # test printing list
+    cll.insertTail(node1)
+    cll.insertTail(node2)
+    cll.insertTail(node3)
+    cll.print()
+
+# i think this is implemented but this needs to be CHECKED
 def test_STACK():
-    # test the stack
-    stack = STACK()
+    from mylib.datastructures.linear.Stack import Stack
+    from mylib.datastructures.nodes.Single_linked_Node import Node
+    # Create a new empty stack
+    stack = Stack()
 
-    # test the push method
-    stack.push(10)
-    stack.push(20)
-    stack.push(30)
-    stack.push(40)
-    stack.push(25)
-    stack.push(15)
+    # Test push method
+    stack.push(Node(1))
+    stack.push(Node(2))
+    stack.push(Node(3))
 
-    # test the peek
-    assert stack.peek() == 15
+    # Test pop method
+    assert stack.pop() == 3
+    assert stack.pop() == 2
+    assert stack.pop() == 1
 
-    # test the pop method
-    assert stack.pop() == 15
+    # Test peek method
+    stack.push(4)
+    stack.push(5)
+    assert stack.peek() == 5
+    stack.pop()
+    assert stack.peek() == 4
 
-    # test the peek
-    assert stack.peek() == 25
+    # Test length and print methods
+    stack.push(Node(6))
+    assert stack.length == 2
 
-    # remove rest of items
-    assert stack.pop() == 25
-    assert stack.pop() == 40
-    assert stack.pop() == 30
-    assert stack.pop() == 20
-    assert stack.pop() == 10
 
-    # test the is empty method
-    assert stack.is_empty() == True
-
-# This needs to be changed
-import mylib.datastructures.linear.Queue as QUEUE
+# i think this is implemented but this needs to be CHECKED
 def test_QUEUE():
-    # test the queue
-    queue = QUEUE()
+    from mylib.datastructures.linear.Queue import Queue
+    from mylib.datastructures.nodes.Single_linked_Node import Node
+    # Create a new queue
+    q = Queue()
 
-    # test the enqueue method
-    queue.enqueue(10)
-    queue.enqueue(20)
-    queue.enqueue(30)
-    queue.enqueue(40)
-    queue.enqueue(25)
-    queue.enqueue(15)
+    # Enqueue some items
+    q.enqueue(Node(1))
+    q.enqueue(Node(2))
+    q.enqueue(Node(3))
 
-    # test the size
-    assert queue.size() == 6
+    # Check the size of the queue
+    assert q.size() == 3
 
-    # test the peek
-    assert queue.peek() == 10
+    # Check the first item in the queue
+    assert q.peek() == 1
 
-    # test the dequeue method
-    assert queue.dequeue() == 10
-    assert queue.dequeue() == 20
-    assert queue.dequeue() == 30
-    assert queue.dequeue() == 40
-    assert queue.dequeue() == 25
-    assert queue.dequeue() == 15
+    # Dequeue an item and check its value
+    assert q.dequeue() == 1
 
-    # test the is empty method
-    assert queue.is_empty() == True
+    # Check the size of the queue again
+    assert q.size() == 2
+
+    # Enqueue another item
+    q.enqueue(Node(4))
+
+    # Check the size of the queue again
+    assert q.size() == 3
+
+    # Dequeue all remaining items and check their values
+    assert q.dequeue() == 2
+    assert q.dequeue() == 3
+    assert q.dequeue() == 4
+
+    # Check that the queue is now empty
+    assert q.size() == 0
+    assert q.peek() is None

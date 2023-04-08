@@ -1,16 +1,26 @@
 class TNode:
+    '''
     def __init__(self):
         self.dataMember = 0
         self.left = None
         self.right = None
         self.parent = None
         self.balance = 0
-    def __init__(self, data, balance, P, L, R): 
-        self.dataMember = data
-        self.balance = balance
-        self.parent = P
-        self.left = L
-        self.right = R
+    '''
+    def __init__(self, data = 0, balance = 0, P = None, L = None, R = None): 
+
+        if(data == 0 and balance == 0 and P == None and L == None and R == None):
+            self.dataMember = 0
+            self.left = None
+            self.right = None
+            self.parent = None
+            self.balance = 0
+        else:
+            self.dataMember = data
+            self.balance = balance
+            self.parent = P
+            self.left = L
+            self.right = R            
 
     def setDataMember(self, data):
         self.dataMember = data

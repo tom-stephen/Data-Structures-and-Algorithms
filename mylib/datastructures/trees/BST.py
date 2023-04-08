@@ -1,85 +1,90 @@
-from mylib.datastructures.nodes.Tree_Node import Node
+from mylib.datastructures.trees.TNode import TNode
+#from TNode import TNode
 
-class BinarySearchTree:
-    def __init__(self):
+
+class BST:    
+    #3 constructors in one (reeses puff)
+    def __init__(self, val = 0, obj = None):
         self.root = None
+        def construct(val):
+            return TNode(val, 0, None, None, None)
+        if(val ==0 and obj == None):
+            self.root = None
+        elif(obj == None):
+            self.root = construct(val)
+        elif(val ==0):
+            self.root = obj
 
-    def insert(self, key):
-        def _insert(node, key):
-            if not node:
-                return Node(key)
 
-            if key < node.key:
-                node.left = _insert(node.left, key)
-            else:
-                node.right = _insert(node.right, key)
+    def setRoot(self, root):        #NEEDS WORK
+        self.root = root
 
-            node.height = 1 + max(self._height(node.left), self._height(node.right))
-            balance = self._get_balance(node)
+    def getRoot(self):
+        return self.root
+    
+    def insert(self, val):          ###I HAVE NOT IMPLEMENTED THE BALANCE OR PARENT
+        newNode = TNode(val, 0, None, None, None)
+        if self.root == None:
+            self.root = newNode
+        else:
+            current = self.root
+            while(True):
+                parent = current
+                if(val < current.getDataMember()):
+                    current = current.getTNodeLeft()
+                    if(current == None):
+                        current = newNode
+                        parent.setTnodeLeft(current)
+                        current.setTNodeParent(parent)
 
-            if balance > 1 and key < node.left.key:
-                return self._rotate_right(node)
-            if balance < -1 and key > node.right.key:
-                return self._rotate_left(node)
-            if balance > 1 and key > node.left.key:
-                node.left = self._rotate_left(node.left)
-                return self._rotate_right(node)
-            if balance < -1 and key < node.right.key:
-                node.right = self._rotate_right(node.right)
-                return self._rotate_left(node)
+                        print("LEFT B")
+                        print("NodeNum P:", parent.toString())
+                        print("NodeNum C:", current.toString())
+                        print("Test Left P: ", parent.getTNodeLeft())
+                        print("Test Right P: ", parent.getTNodeRight())
+                        print("Test Balance P: ", parent.getBalance())
+                        print("Test Left C: ", current.getTNodeLeft())
+                        print("Test Left C: ", current.getTNodeRight())
+                        print("Test Left C-P: ", current.getTNodeParent())
 
-            return node
+                        return
+                else:
+                    current = current.getTNodeRight()
+                    if(current == None):
+                        current = newNode
+                        parent.setTnodeRight(current)
+                        current.setTNodeParent(parent)
 
-        self.root = _insert(self.root, key)
+                        print("RIGHT B")
+                        print("NodeNum P:", parent.toString())
+                        print("NodeNum C:", current.toString())
+                        print("Test Left P: ", parent.getTNodeLeft())
+                        print("Test Right P: ", parent.getTNodeRight())
+                        print("Test Balance P: ", parent.getBalance())
+                        print("Test Left C: ", current.getTNodeLeft())
+                        print("Test Left C: ", current.getTNodeRight())
+                        print("Test Left C-P: ", current.getTNodeParent())
+                        return
 
-    def search(self, key):
-        curr_node = self.root
-        while curr_node:
-            if key == curr_node.key:
-                return True
-            elif key < curr_node.key:
-                curr_node = curr_node.left
-            else:
-                curr_node = curr_node.right
-        return False
+'''
+    def insert(self, TNode):
 
-    def _height(self, node):
-        if not node:
-            return 0
-        return node.height
 
-    def _get_balance(self, node):
-        if not node:
-            return 0
-        return self._height(node.left) - self._height(node.right)
 
-    def _rotate_left(self, node):
-        new_root = node.right
-        node.right = new_root.left
-        new_root.left = node
+    def Delete(val):
 
-        node.height = 1 + max(self._height(node.left), self._height(node.right))
-        new_root.height = 1 + max(self._height(new_root.left), self._height(new_root.right))
+    def Search(TNode):
 
-        return new_root
+    def printInOrder(self):
 
-    def _rotate_right(self, node):
-        new_root = node.left
-        node.left = new_root.right
-        new_root.right = node
+    def printBF():
+'''
 
-        node.height = 1 + max(self._height(node.left), self._height(node.right))
-        new_root.height = 1 + max(self._height(new_root.left), self._height(new_root.right))
-
-        return new_root
-
-    def _inorder_traversal(self, node, result):
-        if node:
-            self._inorder_traversal(node.left, result)
-            result.append(node.key)
-            self._inorder_traversal(node.right, result)
-
-    def inorder_traversal(self):
-        result = []
-        self._inorder_traversal(self.root, result)
-        return result
+if __name__ == "__main__":
+    a = BST(8)
+    print("Root:", a.getRoot())
+    a.insert(10)
+    a.insert(4)
+    a.insert(2)
+    a.insert(9)
+    print("Root:", a.getRoot())

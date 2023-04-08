@@ -59,6 +59,9 @@ class DoublyLinkedList:
         if self.head is None:
             return
         
+        if self.sorted:
+            return
+        
         current_node = self.head
         while current_node is not None:
             next_node = current_node.next

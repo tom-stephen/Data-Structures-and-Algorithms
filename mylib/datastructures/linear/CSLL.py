@@ -157,11 +157,11 @@ class CircularLinkedList:
             return
         
         if self.head == node:
-            self.DeleteHead()
+            self.deleteHead()
             return
         
         if self.tail == node:
-            self.DeleteTail()
+            self.deleteTail()
             return
         
         current_node = self.head

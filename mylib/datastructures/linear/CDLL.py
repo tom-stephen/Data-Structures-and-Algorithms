@@ -62,17 +62,18 @@ class CircularDoublyLinkedList:
             return
         
         if self.sorted:
-            return  
+            return
         
-        for i in range(self.length):
-            current_node = self.head
-            for j in range(self.length):
-                if current_node.value > current_node.next.value:
-                    temp = current_node.value
-                    current_node.value = current_node.next.value
-                    current_node.next.value = temp
-                current_node = current_node.next
+        current_node = self.head
+        while current_node is not None:
+            next_node = current_node.next
+            while next_node is not None:
+                if current_node.value > next_node.value:
+                    current_node.value, next_node.value = next_node.value, current_node.value
+                next_node = next_node.next
+            current_node = current_node.next
         self.sorted = True
+        return
 
     def sortedInsert(self, node):
         if self.head is None:

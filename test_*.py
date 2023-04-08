@@ -242,7 +242,7 @@ def test_DLL():
     insertHead_test()
     insertTail_test()
     insert_test()
-    sort_test()
+    sort_test() ############################## this one is broken
     sortedInsert_test()
     search_test()
     deleteHead_test()

@@ -6,6 +6,7 @@ def test_SLL():
 
     # insert elements into the list
     for i in range(10):
+        print("hello")
         node = SNode(i)
         sll.insert(node, i)
     

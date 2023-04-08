@@ -1,4 +1,4 @@
-from mylib.datastructures.nodes.Single_linked_Node import Node
+# from mylib.datastructures.nodes.Single_linked_Node import Node
 
 class SinglyLinkedList:
     def __init__(self, head = None):
@@ -15,6 +15,13 @@ class SinglyLinkedList:
             self.length = 1
 
     def insertHead(self, node):
+        if self.head is None:
+            self.head = node
+            self.tail = node
+            self.length += 1
+            self.sorted = False
+            return
+
         node.next = self.head
         self.head = node
         self.length += 1

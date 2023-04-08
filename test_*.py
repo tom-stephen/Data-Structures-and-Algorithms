@@ -1,8 +1,5 @@
 # Testing file for testing all algorithm implementations
 
-import numpy as np
-import matplotlib.pyplot as plt
-import unittest
 
 # import mylib.datastructures.heap.VBH_Max as MaxHeap
 # def test_VBH_Max():
@@ -233,7 +230,13 @@ def test_DLL():
         node1 = Node(1)
         node2 = Node(2)
         node3 = Node(3)
-        dll.insertTail
+        dll.insertTail(node1)
+        dll.insertTail(node2)
+        dll.insertTail(node3)
+        dll.delete(node2)
+        assert dll.head == node1
+        assert dll.tail == node3
+        assert dll.length == 2
 
     # run the tests above
     insertHead_test()
@@ -252,112 +255,131 @@ def test_SLL():
     from mylib.datastructures.nodes.Single_linked_Node import Node
     from mylib.datastructures.linear.SLL import SinglyLinkedList
 
-    # Test the insertHead() method
-    linked_list = SinglyLinkedList()
-    linked_list.insertHead(Node(1))
-    assert linked_list.head.value == 1
-    assert linked_list.tail.value == 1
-    assert linked_list.length == 1
+    def one_test():
+        # Test the insertHead() method
+        linked_list = SinglyLinkedList()
+        linked_list.insertHead(Node(1))
+        assert linked_list.head.value == 1
+        assert linked_list.tail.value == 1
+        assert linked_list.length == 1
 
-    linked_list.insertHead(Node(2))
-    assert linked_list.head.value == 2
-    assert linked_list.tail.value == 1
-    assert linked_list.length == 2
+        linked_list.insertHead(Node(2))
+        assert linked_list.head.value == 2
+        assert linked_list.tail.value == 1
+        assert linked_list.length == 2
 
-    # Test the insertTail() method
-    linked_list = SinglyLinkedList()
-    linked_list.insertTail(Node(1))
-    assert linked_list.head.value == 1
-    assert linked_list.tail.value == 1
-    assert linked_list.length == 1
+    def two_test():
+        # Test the insertTail() method
+        linked_list = SinglyLinkedList()
+        linked_list.insertTail(Node(1))
+        assert linked_list.head.value == 1
+        assert linked_list.tail.value == 1
+        assert linked_list.length == 1
 
-    linked_list.insertTail(Node(2))
-    assert linked_list.head.value == 1
-    assert linked_list.tail.value == 2
-    assert linked_list.length == 2
+        linked_list.insertTail(Node(2))
+        assert linked_list.head.value == 1
+        assert linked_list.tail.value == 2
+        assert linked_list.length == 2
 
-    # Test the insert() method
-    linked_list = SinglyLinkedList()
-    linked_list.insert(Node(1), 0)
-    assert linked_list.head.value == 1
-    assert linked_list.tail.value == 1
-    assert linked_list.length == 1
+    def three_test():
+        # Test the insert() method
+        linked_list = SinglyLinkedList()
+        linked_list.insert(Node(1), 0)
+        assert linked_list.head.value == 1
+        assert linked_list.tail.value == 1
+        assert linked_list.length == 1
 
-    linked_list.insert(Node(2), 1)
-    assert linked_list.head.value == 1
-    assert linked_list.tail.value == 2
-    assert linked_list.length == 2
+        linked_list.insert(Node(2), 1)
+        assert linked_list.head.value == 1
+        assert linked_list.tail.value == 2
+        assert linked_list.length == 2
 
-    linked_list.insert(Node(3), 1)
-    assert linked_list.head.value == 1
-    assert linked_list.tail.value == 2
-    assert linked_list.length == 3
+        linked_list.insert(Node(3), 1)
+        assert linked_list.head.value == 1
+        assert linked_list.tail.value == 2
+        assert linked_list.length == 3
 
-    # Test the sort() method
-    linked_list = SinglyLinkedList()
-    linked_list.insertHead(Node(2))
-    linked_list.insertHead(Node(1))
-    linked_list.insertTail(Node(4))
-    linked_list.insertTail(Node(3))
-    linked_list.sort()
-    assert linked_list.head.value == 1
-    assert linked_list.tail.value == 4
-    assert linked_list.length == 4
+    def four_test():
+        # Test the sort() method
+        linked_list = SinglyLinkedList()
+        linked_list.insertHead(Node(2))
+        linked_list.insertHead(Node(1))
+        linked_list.insertTail(Node(4))
+        linked_list.insertTail(Node(3))
+        linked_list.sort()
+        assert linked_list.head.value == 1
+        assert linked_list.tail.value == 4
+        assert linked_list.length == 4
 
-    # Test the sortedInsert() method
-    linked_list = SinglyLinkedList()
-    linked_list.sortedInsert(Node(2))
-    assert linked_list.head.value == 2
-    assert linked_list.tail.value == 2
-    assert linked_list.length == 1
+    def five_test():
+        # Test the sortedInsert() method
+        linked_list = SinglyLinkedList()
+        linked_list.sortedInsert(Node(2))
+        assert linked_list.head.value == 2
+        assert linked_list.tail.value == 2
+        assert linked_list.length == 1
 
-    linked_list.sortedInsert(Node(1))
-    assert linked_list.head.value == 1
-    assert linked_list.tail.value == 2
-    assert linked_list.length == 2
+        linked_list.sortedInsert(Node(1))
+        assert linked_list.head.value == 1
+        assert linked_list.tail.value == 2
+        assert linked_list.length == 2
 
-    linked_list.sortedInsert(Node(3))
-    assert linked_list.head.value == 1
-    assert linked_list.tail.value == 3
-    assert linked_list.length == 3
+        linked_list.sortedInsert(Node(3))
+        assert linked_list.head.value == 1
+        assert linked_list.tail.value == 3
+        assert linked_list.length == 3
 
-    # Test the search() method
-    linked_list = SinglyLinkedList()
-    linked_list.insertTail(Node(1))
-    linked_list.insertTail(Node(2))
-    linked_list.insertTail(Node(3))
-    assert linked_list.search(Node(2)).value == 2
-    assert linked_list.search(Node(4)) is None
+    def six_test():
+        # Test the search() method
+        linked_list = SinglyLinkedList()
+        linked_list.insertTail(Node(1))
+        linked_list.insertTail(Node(2))
+        linked_list.insertTail(Node(3))
+        assert linked_list.search(Node(2)).value == 2
+        assert linked_list.search(Node(4)) is None
 
-    # Test the deleteHead() method
-    linked_list = SinglyLinkedList()
-    linked_list.insertTail(Node(1))
-    linked_list.insertTail(Node(2))
-    linked_list.insertTail(Node(3))
-    assert linked_list.deleteHead() == 1
-    assert linked_list.head.value == 2
-    assert linked_list.tail.value == 3
-    assert linked_list.length == 2
+    def seven_test():
+        # Test the deleteHead() method
+        linked_list = SinglyLinkedList()
+        linked_list.insertTail(Node(1))
+        linked_list.insertTail(Node(2))
+        linked_list.insertTail(Node(3))
+        assert linked_list.deleteHead() == 1
+        assert linked_list.head.value == 2
+        assert linked_list.tail.value == 3
+        assert linked_list.length == 2
 
-    # Test the deleteTail() method
-    linked_list = SinglyLinkedList()
-    linked_list.insertTail(Node(1))
-    linked_list.insertTail(Node(2))
-    linked_list.insertTail(Node(3))
-    assert linked_list.deleteTail() == 3
-    assert linked_list.head.value == 1
-    assert linked_list.tail.value == 2
-    assert linked_list.length == 2
+    def eight_test():
+        # Test the deleteTail() method
+        linked_list = SinglyLinkedList()
+        linked_list.insertTail(Node(1))
+        linked_list.insertTail(Node(2))
+        linked_list.insertTail(Node(3))
+        assert linked_list.deleteTail() == 3
+        assert linked_list.head.value == 1
+        assert linked_list.tail.value == 2
+        assert linked_list.length == 2
 
-    # Test the delete() method
-    linked_list = SinglyLinkedList()
-    linked_list.insertTail(Node(1)) 
-    linked_list.insertTail(Node(2))
-    linked_list.insertTail(Node(3))
-    assert linked_list.delete(Node(2)) == 2
-    assert linked_list.head.value == 1
-    assert linked_list.tail.value == 3
-    assert linked_list.length == 2
+    def nine_test():
+        # Test the delete() method
+        linked_list = SinglyLinkedList()
+        linked_list.insertTail(Node(1)) 
+        linked_list.insertTail(Node(2))
+        linked_list.insertTail(Node(3))
+        assert linked_list.delete(Node(2)) == 2
+        assert linked_list.head.value == 1
+        assert linked_list.tail.value == 3
+        assert linked_list.length == 2
+
+    one_test()
+    two_test()
+    three_test()
+    four_test()
+    five_test()
+    six_test()
+    seven_test()
+    eight_test()
+    nine_test()
 
 
 # i think this is implemented but this needs to be CHECKED
@@ -404,7 +426,7 @@ def test_CSLL():
     cll.insertTail(node3)
     cll.print()
 
-# i think this is implemented but this needs to be CHECKED
+# Good but says that some tests where deselected???
 def test_STACK():
     from mylib.datastructures.linear.Stack import Stack
     from mylib.datastructures.nodes.Single_linked_Node import Node
@@ -422,8 +444,8 @@ def test_STACK():
     assert stack.pop() == 1
 
     # Test peek method
-    stack.push(4)
-    stack.push(5)
+    stack.push(Node(4))
+    stack.push(Node(5))
     assert stack.peek() == 5
     stack.pop()
     assert stack.peek() == 4
@@ -433,7 +455,7 @@ def test_STACK():
     assert stack.length == 2
 
 
-# i think this is implemented but this needs to be CHECKED
+# Good but says that some tests where deselected???
 def test_QUEUE():
     from mylib.datastructures.linear.Queue import Queue
     from mylib.datastructures.nodes.Single_linked_Node import Node

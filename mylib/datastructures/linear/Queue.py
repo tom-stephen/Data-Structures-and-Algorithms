@@ -31,6 +31,8 @@ class Queue(SinglyLinkedList):
         return self.length
     
     def peek(self):
+        if self.head is None:
+            return None
         return self.head.value
     
     def print(self):

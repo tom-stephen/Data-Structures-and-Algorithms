@@ -1,12 +1,7 @@
 from mylib.datastructures.nodes.Doubly_linked_Node import Node
 
 class DoublyLinkedList:
-    def __init__(self):
-        self.head = None
-        self.tail = None
-        self.sorted = False
-        self.length = 0
-    
+
     def __init__(self, node=None):
         if node is None:
             self.head = None
@@ -65,13 +60,15 @@ class DoublyLinkedList:
             return
         
         current_node = self.head
-        while current_node.next is not None:
-            if current_node.value > current_node.next.value:
-                temp = current_node.value
-                current_node.value = current_node.next.value
-                current_node.next.value = temp
+        while current_node is not None:
+            next_node = current_node.next
+            while next_node is not None:
+                if current_node.value > next_node.value:
+                    current_node.value, next_node.value = next_node.value, current_node.value
+                next_node = next_node.next
             current_node = current_node.next
         self.sorted = True
+        return
 
     def sortedInsert(self, node):
         if self.head is None:

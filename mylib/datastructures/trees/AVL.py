@@ -17,7 +17,7 @@ class AVL(BST):
         
     def insert(self, val):
         super().insert(val)
-        print("root balance: ", super().getRoot().getBalance())
+        #print("root balance: ", super().getRoot().getBalance())
         
         
 

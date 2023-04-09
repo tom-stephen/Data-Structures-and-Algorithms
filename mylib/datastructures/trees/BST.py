@@ -22,7 +22,7 @@ class BST:
     def getRoot(self):
         return self.root
     
-    def insert(self, val):          ###I HAVE NOT IMPLEMENTED THE BALANCE OR PARENT
+    def insert(self, val):         
         newNode = TNode(val, 0, None, None, None)
         if self.root == None:
             self.root = newNode
@@ -32,39 +32,25 @@ class BST:
                 parent = current
                 if(val < current.getDataMember()):
                     current = current.getTNodeLeft()
+
+                    parent.setBalance(parent.getBalance() - 1)
+                    #print("Test Balance P: ", parent.getBalance())
+
                     if(current == None):
                         current = newNode
                         parent.setTnodeLeft(current)
                         current.setTNodeParent(parent)
-                        '''
-                        print("LEFT B")
-                        print("NodeNum P:", parent.toString())
-                        print("NodeNum C:", current.toString())
-                        print("Test Left P: ", parent.getTNodeLeft())
-                        print("Test Right P: ", parent.getTNodeRight())
-                        print("Test Balance P: ", parent.getBalance())
-                        print("Test Left C: ", current.getTNodeLeft())
-                        print("Test Left C: ", current.getTNodeRight())
-                        print("Test Left C-P: ", current.getTNodeParent())
-                        '''
                         return
                 else:
                     current = current.getTNodeRight()
+
+                    parent.setBalance(parent.getBalance() + 1)
+                    #print("Test Balance P: ", parent.getBalance())
+
                     if(current == None):
                         current = newNode
                         parent.setTnodeRight(current)
                         current.setTNodeParent(parent)
-                        '''
-                        print("RIGHT B")
-                        print("NodeNum P:", parent.toString())
-                        print("NodeNum C:", current.toString())
-                        print("Test Left P: ", parent.getTNodeLeft())
-                        print("Test Right P: ", parent.getTNodeRight())
-                        print("Test Balance P: ", parent.getBalance())
-                        print("Test Left C: ", current.getTNodeLeft())
-                        print("Test Left C: ", current.getTNodeRight())
-                        print("Test Left C-P: ", current.getTNodeParent())
-                        '''
                         return
 
 
@@ -77,39 +63,23 @@ class BST:
                 parent = current
                 if(node.getDataMember() < current.getDataMember()):
                     current = current.getTNodeLeft()
+
+                    parent.setBalance(parent.getBalance() - 1)
+
                     if(current == None):
                         current = node
                         parent.setTnodeLeft(current)
                         current.setTNodeParent(parent)
-                        '''
-                        print("LEFT B")
-                        print("NodeNum P:", parent.toString())
-                        print("NodeNum C:", current.toString())
-                        print("Test Left P: ", parent.getTNodeLeft())
-                        print("Test Right P: ", parent.getTNodeRight())
-                        print("Test Balance P: ", parent.getBalance())
-                        print("Test Left C: ", current.getTNodeLeft())
-                        print("Test Left C: ", current.getTNodeRight())
-                        print("Test Left C-P: ", current.getTNodeParent())
-                        '''
                         return
                 else:
                     current = current.getTNodeRight()
+
+                    parent.setBalance(parent.getBalance() + 1)
+
                     if(current == None):
                         current = node
                         parent.setTnodeRight(current)
                         current.setTNodeParent(parent)
-                        '''
-                        print("RIGHT B")
-                        print("NodeNum P:", parent.toString())
-                        print("NodeNum C:", current.toString())
-                        print("Test Left P: ", parent.getTNodeLeft())
-                        print("Test Right P: ", parent.getTNodeRight())
-                        print("Test Balance P: ", parent.getBalance())
-                        print("Test Left C: ", current.getTNodeLeft())
-                        print("Test Left C: ", current.getTNodeRight())
-                        print("Test Left C-P: ", current.getTNodeParent())
-                        '''
                         return                
 
 
@@ -166,7 +136,7 @@ class BST:
         _inorder_traversal(self.root, result)
 
         print("Contents of BST in ascending order: ")
-        print(result)        
+        print(result)
 
 
 
@@ -221,13 +191,11 @@ class BST:
 
 #Testing
 if __name__ == "__main__":
-    b = TNode(4)
-    a = BST(8)
+    b = TNode(9)
+    a = BST(15)
     #print("Root:", a.getRoot())
-    a.insert(10)
     a.insertNode(b)
     a.insert(2)
-    a.insert(9)
     #a.Search(2)
     a.Delete(2)
     a.Delete(2)

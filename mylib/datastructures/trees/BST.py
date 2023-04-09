@@ -166,6 +166,7 @@ class BST:
         _inorder_traversal(self.root, result)
 
         print("Contents of BST in ascending order: ")
+        print(result)        
 
 
 

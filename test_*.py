@@ -84,7 +84,7 @@
 #     # test that the heap is empty after removing all elements
 #     assert min_heap.is_empty() == True
 
-# This needs to be changed
+# SORTING IS BROKEN
 def test_CDLL():
     from mylib.datastructures.linear.CDLL import CircularDoublyLinkedList as CDLL
     from mylib.datastructures.nodes.Doubly_linked_Node import Node
@@ -122,7 +122,7 @@ def test_CDLL():
     assert linked_list.head is None
     assert linked_list.tail is None
 
-# i think this is implemented but this needs to be CHECKED
+# SORTING IS BROKEN
 def test_DLL():
     from mylib.datastructures.nodes.Doubly_linked_Node import Node
     from mylib.datastructures.linear.DLL import DoublyLinkedList
@@ -250,7 +250,7 @@ def test_DLL():
     delete_test()
 
 
-# i think this is implemented but this needs to be CHECKED
+# SORTING IS BROKEN
 def test_SLL():
     from mylib.datastructures.nodes.Single_linked_Node import Node
     from mylib.datastructures.linear.SLL import SinglyLinkedList
@@ -382,7 +382,7 @@ def test_SLL():
     nine_test()
 
 
-# i think this is implemented but this needs to be CHECKED
+# SORTING IS BROKEN
 def test_CSLL():
     from mylib.datastructures.linear.CSLL import CircularLinkedList
     from mylib.datastructures.nodes.Single_linked_Node import Node

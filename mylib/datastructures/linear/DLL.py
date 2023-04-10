@@ -71,6 +71,22 @@ class DoublyLinkedList:
                 next_node = next_node.next
             current_node = current_node.next
         self.sorted = True
+
+        # if self.head is None:
+        #     return
+        
+        # if self.sorted:
+        #     return
+        
+
+        # current_node = self.head
+        # head = None
+        # tail = None
+        # while current_node is not None:
+        #     sortedInsert(current_node)
+        #     current_node = current_node.next
+
+        self.sorted = True
         return
 
     def sortedInsert(self, node):

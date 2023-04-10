@@ -83,24 +83,66 @@ class AVL(BST):
                     if(current.getBalance() != 0):
                         return prev
         #AVL sorter            
-        def _pivotUpdate(root, ancestor, pivot, son):
+        def _pivotUpdateCheck(root, val, pivot, son):
+            current = root
+            while(current != None and current.getDataMember() != val):
+                if(val < current.getDataMember()):
+                    current = current.getTNodeLeft()
+                else:
+                    current = current.getTNodeRight()
+            if(son.getTNodeRight() == current and pivot.getBalance() == 1):
+                return "leftRotate"
+            if(son.getTNodeLeft() == current and pivot.getBalance() == 1):
+                return "rlRotate"
+            if(son.getTNodeLeft() == current or son.getTNodeRight() == -1):
+                return "rightRotate"
+            if(son.getTNodeRight() == current or son.getTNodeRight() == -1):
+                return "lrRotate"
+            else:
+                return "skip"
+                    
+
+        def rightRotate(root, ancestor, pivot, son):
             if(ancestor == None):
-                if(pivot.getBalance() < 0):
-                    pivot.setTnodeLeft(None)
-                    pivot.setTNodeParent(None)
-                    son.setTNodeParent(ancestor)
-                    son.setTnodeRight(pivot)
-                    pivot.setTNodeParent(son)
-                elif(pivot.getBalance() > 0):
-                    pivot.setTnodeRight(None)
-                    pivot.setTNodeParent(None)
-                    son.setTNodeParent(ancestor)
-                    son.setTnodeLeft(pivot)
-                    pivot.setTNodeParent(son)
+                pivot.setTNodeLeft(None)
+                pivot.setTNodeParent(None)
+
+                son.setTNodeParent(ancestor)
+                son.setTNodeRight(pivot)
+                pivot.setTNodeParent(son)
+            else:
+                pivot.setTNodeLeft(None)
+                pivot.setTNodeParent(None)
+
+                ancestor.setTNodeRight(son)
+                son.setTNodeParent(ancestor)
+
+                son.setTNodeRight(pivot)
+                pivot.setTNodeParent(son)
+             
+        def leftRotate(root, ancestor, pivot, son):
+            if(ancestor == None):
+                pivot.setTNodeRight(None)
+                pivot.setTNodeParent(None)
+
+                son.setTNodeParent(ancestor)
+
+                son.setTNodeLeft(pivot)
+                pivot.setTNodeParent(son)
+            else:
+                pivot.setTNodeRight(None)
+                pivot.setTNodeParent(None)
+
+                ancestor.setTNodeLeft(son)
+                son.setTNodeParent(ancestor)
+
+                son.setTNodeLeft(pivot)
+                pivot.setTNodeParent(son)   
 
                     
 
 
+        ancestor = None
         ancestor = None
         pivot = None
         son = None
@@ -109,13 +151,30 @@ class AVL(BST):
         son = _pivotSonFind(self.root, val)
 
         #CHECKS IF THERE NEEDS TO BE A PIVOT CHANGE
-        if(pivot != None):                              #Note to self, expand this for the avl shifts
+        if(pivot != None):                           
             ancestor = pivot.getTNodeParent()
-            if(ancestor == None):
-                super().setRoot(son)
-                _pivotUpdate(self.root, ancestor, pivot, son)
-            else:
-                _pivotUpdate(self.root, ancestor, pivot, son)
+
+            check = _pivotUpdateCheck(self.root, val, pivot, son)
+
+            if(check != "skip"):
+                if(check == "leftRotate"):
+                    leftRotate(self.root, ancestor, pivot, son)
+                    super().setRoot(son)
+                elif(check == "rightRotate"):
+                    rightRotate(self.root, ancestor, pivot, son)
+                    super().setRoot(son)
+                elif(check == "rlRotate"):
+                    grandson = son.getTNodeLeft()
+                    rightRotate(self.root, pivot, son, grandson)
+                    leftRotate(self.root, ancestor, pivot, grandson)
+                    super().setRoot(grandson)
+                elif(check == "lrRotate"):
+                    grandson = son.getTNodeRight()
+                    leftRotate(self.root, pivot, son, grandson)
+                    rightRotate(self.root, ancestor, pivot, grandson)
+                    super().setRoot(grandson)
+           
+                    
 
         _balanceUpdate(self.root)
 
@@ -138,8 +197,10 @@ class AVL(BST):
 if __name__ == "__main__":
     print()
     a = AVL(60)
+    #a.insert(70)
     a.insert(70)
-    a.insert(80)
+    a.insert(65)
+    #a.insert(80)
     '''
     a.insert(70)
     a.insert(65)

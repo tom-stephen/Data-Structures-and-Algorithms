@@ -1,5 +1,5 @@
-from mylib.datastructures.trees.TNode import TNode
-#from TNode import TNode
+#from mylib.datastructures.trees.TNode import TNode
+from TNode import TNode
 
 
 class BST:    
@@ -38,7 +38,7 @@ class BST:
 
                     if(current == None):
                         current = newNode
-                        parent.setTnodeLeft(current)
+                        parent.setTNodeLeft(current)
                         current.setTNodeParent(parent)
                         return
                 else:
@@ -49,7 +49,7 @@ class BST:
 
                     if(current == None):
                         current = newNode
-                        parent.setTnodeRight(current)
+                        parent.setTNodeRight(current)
                         current.setTNodeParent(parent)
                         return
 
@@ -68,7 +68,7 @@ class BST:
 
                     if(current == None):
                         current = node
-                        parent.setTnodeLeft(current)
+                        parent.setTNodeLeft(current)
                         current.setTNodeParent(parent)
                         return
                 else:
@@ -78,7 +78,7 @@ class BST:
 
                     if(current == None):
                         current = node
-                        parent.setTnodeRight(current)
+                        parent.setTNodeRight(current)
                         current.setTNodeParent(parent)
                         return                
 
@@ -101,10 +101,10 @@ class BST:
             print("Value Cannot be found")
             return None
         if(parent.getTNodeLeft() == current):
-            parent.setTnodeLeft(None)
+            parent.setTNodeLeft(None)
 
         else:
-            parent.setTnodeLeft(None)
+            parent.setTNodeLeft(None)
 
                    
     def Search(self, val):

@@ -14,6 +14,7 @@ class CircularLinkedList:
         else:
             self.head = node
             self.tail = node
+            node.next = node
             self.sorted = False
             self.length = 1
 
@@ -21,9 +22,11 @@ class CircularLinkedList:
         if self.head is None:
             self.head = node
             self.tail = node
+            node.next = node
         else:
-            node.next = self.head
-            self.head = node
+            node.next = self.head.next
+            self.head.next = node
+        self.head = node
         self.length += 1
         self.sorted = False
 
@@ -31,9 +34,12 @@ class CircularLinkedList:
         if self.head is None:
             self.head = node
             self.tail = node
+            node.next = node
         else:
             self.tail.next = node
             self.tail = node
+            node.next = self.head
+
         self.length += 1
         self.sorted = False
 
@@ -41,6 +47,7 @@ class CircularLinkedList:
         if self.head is None:
             self.head = node
             self.tail = node
+            node.next = node
             self.length += 1
             self.sorted = False
             return
@@ -57,6 +64,7 @@ class CircularLinkedList:
         for i in range(index - 1):
             current_node = current_node.next
         node.next = current_node.next
+        node.prev = current_node
         current_node.next = node
         self.length += 1
         self.sorted = False
@@ -68,10 +76,11 @@ class CircularLinkedList:
         if self.sorted:
             return
         
+
         current_node = self.head
-        while current_node is not None:
+        while current_node.next != self.head:
             next_node = current_node.next
-            while next_node is not None:
+            while next_node != self.head:
                 if current_node.value > next_node.value:
                     current_node.value, next_node.value = next_node.value, current_node.value
                 next_node = next_node.next
@@ -87,7 +96,7 @@ class CircularLinkedList:
             return
 
         current_node = self.head
-        while current_node.next is not None:
+        while current_node.next != self.head:
             if current_node.value > current_node.next.value:
                 self.sort()
                 break
@@ -100,7 +109,7 @@ class CircularLinkedList:
             return
         
         current_node = self.head
-        while current_node.next is not None:
+        while current_node.next != self.head:
             if current_node.value <= node.value and current_node.next.value >= node.value:
                 node.next = current_node.next
                 current_node.next = node
@@ -119,7 +128,7 @@ class CircularLinkedList:
             return None
         
         current_node = self.head
-        while current_node.next is not None:
+        while current_node.next != self.head:
             if current_node == node:
                 return current_node
             current_node = current_node.next
@@ -166,7 +175,7 @@ class CircularLinkedList:
             return
         
         current_node = self.head
-        while current_node.next is not None:
+        while current_node.next != self.head:
             if current_node.next == node:
                 current_node.next = current_node.next.next
                 self.length -= 1
@@ -187,9 +196,10 @@ class CircularLinkedList:
         if self.head is None:
             print('None')
             return
-        
         current_node = self.head
-        while current_node.next is not None:
-            print(current_node.value, end=' ')
+        i = 0
+        while i < self.length - 1:
+            print(current_node.value, end=', ')
             current_node = current_node.next
+            i += 1
         print(current_node.value)

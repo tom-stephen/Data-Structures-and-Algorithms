@@ -1,12 +1,5 @@
 class TNode:
-    '''
-    def __init__(self):
-        self.dataMember = 0
-        self.left = None
-        self.right = None
-        self.parent = None
-        self.balance = 0
-    '''
+    #two constructors stuffed into one (i am in misery)
     def __init__(self, data = 0, balance = 0, P = None, L = None, R = None): 
 
         if(data == 0 and balance == 0 and P == None and L == None and R == None):
@@ -24,9 +17,9 @@ class TNode:
 
     def setDataMember(self, data):
         self.dataMember = data
-    def setTnodeLeft(self, L):
+    def setTNodeLeft(self, L):
         self.left = L
-    def setTnodeRight(self, R):
+    def setTNodeRight(self, R):
         self.right = R
     def setTNodeParent(self, P):
         self.parent = P

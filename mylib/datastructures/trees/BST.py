@@ -33,7 +33,7 @@ class BST:
                 if(val < current.getDataMember()):
                     current = current.getTNodeLeft()
 
-                    parent.setBalance(parent.getBalance() - 1)
+                    #parent.setBalance(parent.getBalance() - 1)
                     #print("Test Balance P: ", parent.getBalance())
 
                     if(current == None):
@@ -44,7 +44,7 @@ class BST:
                 else:
                     current = current.getTNodeRight()
 
-                    parent.setBalance(parent.getBalance() + 1)
+                    #parent.setBalance(parent.getBalance() + 1)
                     #print("Test Balance P: ", parent.getBalance())
 
                     if(current == None):
@@ -64,7 +64,7 @@ class BST:
                 if(node.getDataMember() < current.getDataMember()):
                     current = current.getTNodeLeft()
 
-                    parent.setBalance(parent.getBalance() - 1)
+                    #parent.setBalance(parent.getBalance() - 1)
 
                     if(current == None):
                         current = node
@@ -74,7 +74,7 @@ class BST:
                 else:
                     current = current.getTNodeRight()
 
-                    parent.setBalance(parent.getBalance() + 1)
+                    #parent.setBalance(parent.getBalance() + 1)
 
                     if(current == None):
                         current = node

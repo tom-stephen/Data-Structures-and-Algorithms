@@ -64,9 +64,6 @@ class SinglyLinkedList:
         if current is None:
             return
         
-        # self.head = None
-        # self.tail = None
-
         while current.next is not None:
             next_node = current.next
 

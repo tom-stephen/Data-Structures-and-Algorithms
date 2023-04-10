@@ -73,7 +73,6 @@ class CircularDoublyLinkedList:
                 next_node = next_node.next
             current_node = current_node.next
         self.sorted = True
-        return
 
     def sortedInsert(self, node):
         if self.head is None:

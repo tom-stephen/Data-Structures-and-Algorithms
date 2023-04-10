@@ -65,14 +65,15 @@ class CircularLinkedList:
         if self.head is None:
             return
         
+        if self.sorted:
+            return
+        
         current_node = self.head
-        while current_node.next is not None:
+        while current_node is not None:
             next_node = current_node.next
             while next_node is not None:
                 if current_node.value > next_node.value:
-                    temp = current_node.value
-                    current_node.value = next_node.value
-                    next_node.value = temp
+                    current_node.value, next_node.value = next_node.value, current_node.value
                 next_node = next_node.next
             current_node = current_node.next
         self.sorted = True

@@ -172,8 +172,11 @@ def test_DLL():
         dll.insertTail(node1)
         dll.insertTail(node2)
         dll.sort()
-        assert dll.head == node1
-        assert dll.tail == node3
+        assert dll.head.value == 1
+        assert dll.tail.value == 3
+        assert dll.length == 3
+        assert dll.head.next.value == 2
+        assert dll.tail.prev.value == 2
 
 
     def sortedInsert_test():
@@ -371,6 +374,18 @@ def test_SLL():
         assert linked_list.tail.value == 3
         assert linked_list.length == 2
 
+    def sort_test():
+        # Test the sort() method
+        linked_list = SinglyLinkedList()
+        linked_list.insertHead(Node(2))
+        linked_list.insertHead(Node(1))
+        linked_list.insertTail(Node(4))
+        linked_list.insertTail(Node(3))
+        linked_list.sort()
+        assert linked_list.head.value == 1
+        assert linked_list.tail.value == 4
+        assert linked_list.length == 4
+
     one_test()
     two_test()
     three_test()
@@ -380,7 +395,7 @@ def test_SLL():
     seven_test()
     eight_test()
     nine_test()
-
+    sort_test()
 
 # SORTING IS BROKEN
 def test_CSLL():

@@ -85,7 +85,6 @@
 #     assert min_heap.is_empty() == True
 }
 
-
 # Good but says that some tests where deselected???
 def test_CDLL():
     from mylib.datastructures.linear.CDLL import CircularDoublyLinkedList as CDLL
@@ -471,7 +470,6 @@ def test_STACK():
     # Test length and print methods
     stack.push(Node(6))
     assert stack.length == 2
-
 
 # Good but says that some tests where deselected???
 def test_QUEUE():

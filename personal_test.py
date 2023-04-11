@@ -83,13 +83,28 @@ def test_BST():
     bst = BST()
 
     # Test insert method
+    print("testing the insert method")
     bst.insert(8)
+    bst.printBF()
+    print()
     bst.insert(5)
+    bst.printBF()
+    print()
     bst.insert(3)
+    bst.printBF()
+    print()
     bst.insert(7)
+    bst.printBF()
+    print()
     bst.insert(2)
+    bst.printBF()
+    print()
     bst.insert(4)
+    bst.printBF()
+    print()
     bst.insert(6)
+    bst.printBF()
+    print()
 
     # Test search method
     assert bst.search(5).data == 5
@@ -136,13 +151,34 @@ def test_AVL():
     avl = AVL()
 
     # Test insert method
+    print("testing the insert method")
     avl.insert(8)
+    avl.printBF()
+    print()
+
     avl.insert(5)
+    avl.printBF()
+    print()
+
     avl.insert(3)
+    avl.printBF()
+    print()
+
     avl.insert(7)
+    avl.printBF()
+    print()
+
     avl.insert(2)
+    avl.printBF()
+    print()
+
     avl.insert(4)
+    avl.printBF()
+    print()
+
     avl.insert(6)
+    avl.printBF()
+    print()
 
     # Test search method
     assert avl.search(5).data == 5
@@ -170,11 +206,6 @@ def test_AVL():
     print("after deleting 3:")
     avl.printBF()
     print()
-#       6
-#     /   \
-#    4     8
-#   /     /
-#  2     7
     ########################## error starts here. it should go into the delte method in BST and then falls under case 1 and the first if
     avl.delete(7)
     assert avl.search(7) is None

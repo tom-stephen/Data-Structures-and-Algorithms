@@ -5,3 +5,6 @@ class Node:
         self.right = right
         self.parent = parent
         self.balance = balance
+
+    def __str__(self):
+        return str(self.data)

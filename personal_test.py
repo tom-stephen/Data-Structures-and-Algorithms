@@ -20,7 +20,7 @@ def test_SLL():
     sll.sort()
     sll.print()
     print(sll.head.value)
-    print(sll.tail.value)
+    print("tail is: ",sll.tail)
 
 def test_DLL():
     dll = DLL()
@@ -37,7 +37,7 @@ def test_DLL():
     dll.sort()
     dll.print()
     print(dll.head.value)
-    print(dll.tail.value)
+    print("tail is: ",dll.tail)
 
 def test_CDLL():
     cdll = CDLL()
@@ -55,8 +55,8 @@ def test_CDLL():
     cdll.print()
     print(cdll.head.value)
     print(cdll.tail.value)
-    print(cdll.tail.next.value)    ########### this is the problem
-    print(cdll.head.prev.value)    ########### this is the problem
+    print(cdll.tail.next.value)    
+    print(cdll.head.prev.value)    
 
 def test_CSLL():
     csll = CSLL()
@@ -75,7 +75,6 @@ def test_CSLL():
     print(csll.head.value)
     print(csll.tail.value)
     print(csll.tail.next.value)   
-
 
 def test_BST():
     from mylib.datastructures.trees.BST import BinarySearchTree as BST
@@ -130,4 +129,97 @@ def test_BST():
 
     bst.printInOrder()
 
-test_BST()
+def test_AVL():
+    from mylib.datastructures.trees.AVL import AVLTree as AVL
+    from mylib.datastructures.nodes.Tree_Node import Node
+    # Create a new empty BST
+    avl = AVL()
+
+    # Test insert method
+    avl.insert(8)
+    avl.insert(5)
+    avl.insert(3)
+    avl.insert(7)
+    avl.insert(2)
+    avl.insert(4)
+    avl.insert(6)
+
+    # Test search method
+    assert avl.search(5).data == 5
+    assert avl.search(3).data == 3
+    assert avl.search(7).data == 7
+    assert avl.search(2).data == 2
+    assert avl.search(4).data == 4
+    assert avl.search(6).data == 6
+    assert avl.search(8).data == 8
+    assert avl.search(1) is None
+
+    print("original tree:")
+    avl.printBF()
+    print()
+
+    # Test delete method
+    avl.delete(5)
+    assert avl.search(5) is None
+    print("after deleting 5:")
+    avl.printBF()
+    print()
+
+    avl.delete(3)
+    assert avl.search(3) is None
+    print("after deleting 3:")
+    avl.printBF()
+    print()
+#       6
+#     /   \
+#    4     8
+#   /     /
+#  2     7
+    ########################## error starts here. it should go into the delte method in BST and then falls under case 1 and the first if
+    avl.delete(7)
+    assert avl.search(7) is None
+    print("after deleting 7:")
+    print("avl root: ", avl.root)
+    print("avl root right node: ", avl.root.right)
+    print("avl root left node: ", avl.root.left)
+    print("avl root.left.left: ", avl.root.left.left)
+    avl.printBF()
+    print()
+
+    avl.delete(2)
+    assert avl.search(2) is None
+    print("after deleting 2:")
+    avl.printBF()
+    print()
+
+    avl.delete(4)
+    assert avl.search(4) is None
+    print("after deleting 4:")
+    avl.printBF()
+    print()
+
+    avl.delete(6)
+    assert avl.search(6) is None
+    print("after deleting 6:")
+    avl.printBF()
+    print()
+
+    avl.delete(8)
+    assert avl.search(8) is None
+    print("after deleting 8:")
+    avl.printBF()
+    print()
+
+    # Test print method
+    avl.insert(Node(5))
+    avl.insert(Node(3))
+    avl.insert(Node(7))
+    avl.insert(Node(2))
+    avl.insert(Node(4))
+    avl.insert(Node(6))
+    avl.insert(Node(8))
+    avl.printBF()
+
+    avl.printInOrder()
+
+test_AVL()

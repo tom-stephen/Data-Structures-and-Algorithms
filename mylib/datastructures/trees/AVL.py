@@ -90,13 +90,13 @@ class AVL(BST):
                     current = current.getTNodeLeft()
                 else:
                     current = current.getTNodeRight()
-            if(son.getTNodeRight() == current and pivot.getBalance() == 1):
+            if(son.getTNodeRight() == current and pivot.getBalance() > 1 and pivot.getTNodeLeft() == None):
                 return "leftRotate"
-            if(son.getTNodeLeft() == current and pivot.getBalance() == 1):
+            if(son.getTNodeLeft() == current and pivot.getBalance() > 1 and pivot.getTNodeLeft() == None):
                 return "rlRotate"
-            if(son.getTNodeLeft() == current or son.getTNodeRight() == -1):
+            if(son.getTNodeLeft() == current and pivot.getBalance() < -1 and pivot.getTNodeRight() == None):
                 return "rightRotate"
-            if(son.getTNodeRight() == current or son.getTNodeRight() == -1):
+            if(son.getTNodeRight() == current and pivot.getBalance() < -1 and pivot.getTNodeRight() == None):
                 return "lrRotate"
             else:
                 return "skip"
@@ -108,13 +108,14 @@ class AVL(BST):
                 pivot.setTNodeParent(None)
 
                 son.setTNodeParent(ancestor)
+
                 son.setTNodeRight(pivot)
                 pivot.setTNodeParent(son)
             else:
                 pivot.setTNodeLeft(None)
                 pivot.setTNodeParent(None)
 
-                ancestor.setTNodeRight(son)
+                ancestor.setTNodeLeft(son)
                 son.setTNodeParent(ancestor)
 
                 son.setTNodeRight(pivot)
@@ -133,13 +134,66 @@ class AVL(BST):
                 pivot.setTNodeRight(None)
                 pivot.setTNodeParent(None)
 
-                ancestor.setTNodeLeft(son)
+                ancestor.setTNodeRight(son)
                 son.setTNodeParent(ancestor)
 
                 son.setTNodeLeft(pivot)
                 pivot.setTNodeParent(son)   
 
-                    
+        def rlRotate(root, ancestor, pivot, son, grandson):
+
+            son.setTNodeLeft(None)
+            son.setTNodeParent(None)
+
+            pivot.setTNodeRight(grandson)
+            grandson.setTNodeParent(pivot)
+
+            grandson.setTNodeRight(son)
+            son.setTNodeParent(grandson)
+            if(ancestor == None):
+                pivot.setTNodeRight(None)
+                pivot.setTNodeParent(None)
+
+                grandson.setTNodeParent(ancestor)
+
+                grandson.setTNodeLeft(pivot)
+                pivot.setTNodeParent(grandson)
+            else:
+                pivot.setTNodeRight(None)
+                pivot.setTNodeParent(None)
+
+                ancestor.setTNodeLeft(grandson)
+                grandson.setTNodeParent(ancestor)
+
+                grandson.setTNodeLeft(pivot)
+                pivot.setTNodeParent(grandson)
+
+        def lrRotate(root, ancestor, pivot, son, grandson):
+            son.setTNodeRight(None)
+            son.setTNodeParent(None)
+
+            pivot.setTNodeLeft(grandson)
+            grandson.setTNodeParent(pivot)
+
+            grandson.setTNodeLeft(son)
+            son.setTNodeParent(grandson)
+            if(ancestor == None):
+                pivot.setTNodeLeft(None)
+                pivot.setTNodeParent(None)
+
+                grandson.setTNodeParent(ancestor)
+
+                grandson.setTNodeRight(pivot)
+                pivot.setTNodeParent(grandson)
+            else:
+                pivot.setTNodeLeft(None)
+                pivot.setTNodeParent(None)
+
+                ancestor.setTNodeRight(grandson)
+                grandson.setTNodeParent(ancestor)
+
+                grandson.setTNodeRight(pivot)
+                pivot.setTNodeParent(grandson)                     
 
 
         ancestor = None
@@ -151,28 +205,37 @@ class AVL(BST):
         son = _pivotSonFind(self.root, val)
 
         #CHECKS IF THERE NEEDS TO BE A PIVOT CHANGE
+
+        _balanceUpdate(self.root)
+
+        print(self.root.getBalance())
         if(pivot != None):                           
             ancestor = pivot.getTNodeParent()
 
             check = _pivotUpdateCheck(self.root, val, pivot, son)
 
+
+            print(check)
+
             if(check != "skip"):
                 if(check == "leftRotate"):
                     leftRotate(self.root, ancestor, pivot, son)
-                    super().setRoot(son)
+                    if(ancestor == None):
+                        super().setRoot(son)
                 elif(check == "rightRotate"):
                     rightRotate(self.root, ancestor, pivot, son)
-                    super().setRoot(son)
+                    if(ancestor == None):
+                        super().setRoot(son)
                 elif(check == "rlRotate"):
                     grandson = son.getTNodeLeft()
-                    rightRotate(self.root, pivot, son, grandson)
-                    leftRotate(self.root, ancestor, pivot, grandson)
-                    super().setRoot(grandson)
+                    rlRotate(self.root, ancestor, pivot, son, grandson)
+                    if(ancestor == None):
+                        super().setRoot(grandson)
                 elif(check == "lrRotate"):
                     grandson = son.getTNodeRight()
-                    leftRotate(self.root, pivot, son, grandson)
-                    rightRotate(self.root, ancestor, pivot, grandson)
-                    super().setRoot(grandson)
+                    lrRotate(self.root, ancestor, pivot, son, grandson)
+                    if(ancestor == None):
+                        super().setRoot(grandson)
            
                     
 
@@ -186,8 +249,8 @@ class AVL(BST):
 
 
 
-    def Search(self):
-        super().Search()
+    def Search(self, val):
+        super().Search(val)
 
     def printInOder(self):
         super().printInOrder
@@ -197,17 +260,21 @@ class AVL(BST):
 if __name__ == "__main__":
     print()
     a = AVL(60)
-    #a.insert(70)
-    a.insert(70)
-    a.insert(65)
-    #a.insert(80)
+    #a.insert(30)
+    a.insert(100)
+    a.insert(95)
+    a.insert(110)
+    #a.insert(105)
+    #a.insert(96)
+    
     '''
-    a.insert(70)
-    a.insert(65)
-    a.insert(68)
-
-    a.insert(75)
-    a.insert(78)
+    a.insert(80)
+    a.insert(40)
+    a.insert(95)
+    a.insert(20)
+    a.insert(30)
+    a.insert(50)
+    a.insert(10)
     '''
 
     #a.printInOrder()

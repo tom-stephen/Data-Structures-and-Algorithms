@@ -1,6 +1,6 @@
 # Testing file for testing all algorithm implementations
 
-
+{
 # import mylib.datastructures.heap.VBH_Max as MaxHeap
 # def test_VBH_Max():
 #     # create a max heap object
@@ -83,8 +83,10 @@
 
 #     # test that the heap is empty after removing all elements
 #     assert min_heap.is_empty() == True
+}
 
-# SORTING IS BROKEN
+
+# Good but says that some tests where deselected???
 def test_CDLL():
     from mylib.datastructures.linear.CDLL import CircularDoublyLinkedList as CDLL
     from mylib.datastructures.nodes.Doubly_linked_Node import Node
@@ -122,7 +124,7 @@ def test_CDLL():
     assert linked_list.head is None
     assert linked_list.tail is None
 
-# SORTING IS BROKEN
+# Good but says that some tests where deselected???
 def test_DLL():
     from mylib.datastructures.nodes.Doubly_linked_Node import Node
     from mylib.datastructures.linear.DLL import DoublyLinkedList
@@ -245,15 +247,14 @@ def test_DLL():
     insertHead_test()
     insertTail_test()
     insert_test()
-    sort_test() ############################## this one is broken
+    sort_test()
     sortedInsert_test()
     search_test()
     deleteHead_test()
     deleteTail_test()
     delete_test()
 
-
-# SORTING IS BROKEN
+# Good but says that some tests where deselected???
 def test_SLL():
     from mylib.datastructures.nodes.Single_linked_Node import Node
     from mylib.datastructures.linear.SLL import SinglyLinkedList
@@ -385,6 +386,8 @@ def test_SLL():
         assert linked_list.head.value == 1
         assert linked_list.tail.value == 4
         assert linked_list.length == 4
+        linked_list.sortedInsert(Node(0))
+        assert linked_list.head.value == 0
 
     one_test()
     two_test()
@@ -397,7 +400,7 @@ def test_SLL():
     nine_test()
     sort_test()
 
-# SORTING IS BROKEN
+# Good but says that some tests where deselected???
 def test_CSLL():
     from mylib.datastructures.linear.CSLL import CircularLinkedList
     from mylib.datastructures.nodes.Single_linked_Node import Node
@@ -509,7 +512,7 @@ def test_QUEUE():
     assert q.size() == 0
     assert q.peek() is None
 
-
+# Good but says that some tests where deselected???
 def test_BST():
     from mylib.datastructures.trees.BST import BinarySearchTree as BST
     from mylib.datastructures.nodes.Tree_Node import Node

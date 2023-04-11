@@ -1,5 +1,5 @@
-from mylib.datastructures.trees.TNode import TNode
-#from TNode import TNode
+#from mylib.datastructures.trees.TNode import TNode
+from nodes.TNode import TNode
 
 
 class BST:    
@@ -191,10 +191,11 @@ class BST:
 
 #Testing
 if __name__ == "__main__":
-    b = TNode(9)
+    b = BST(9)
+    b.insert(10)
     a = BST(15)
     #print("Root:", a.getRoot())
-    a.insertNode(b)
+    a.insertNode(b.getRoot())
     a.insert(2)
     #a.Search(2)
     a.Delete(2)

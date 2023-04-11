@@ -1,4 +1,4 @@
-from mylib.datastructures.trees.TNode import TNode
+from nodes.TNode import TNode
 #from TNode import TNode
 
 from BST import BST
@@ -203,7 +203,7 @@ class AVL(BST):
             check = _pivotUpdateCheck(self.root, val, ancestor, pivot, son)
 
 
-            print(check)
+            #print(check)
 
             if(check != "skip"):
                 if(check == "leftRotate"):
@@ -254,7 +254,10 @@ class AVL(BST):
 if __name__ == "__main__":
 
     a = AVL(60)
-    a.insert(80)
+
+    b = TNode(80)
+
+    a.insert(b)
     a.insert(40)
     a.insert(95)
     a.insert(70)

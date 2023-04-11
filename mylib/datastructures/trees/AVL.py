@@ -90,16 +90,28 @@ class AVL(BST):
                     current = current.getTNodeLeft()
                 else:
                     current = current.getTNodeRight()
-            if(son.getTNodeRight() == current and pivot.getBalance() == 1 and pivot.getTNodeLeft() == None):
-                return "leftRotate"
-            elif(son.getTNodeLeft() == current and pivot.getBalance() == 1 and pivot.getTNodeLeft() == None):
-                return "rlRotate"
-            elif(son.getTNodeLeft() == current and pivot.getBalance() == -1 and pivot.getTNodeRight() == None):
-                return "rightRotate"
-            elif(son.getTNodeRight() == current and pivot.getBalance() == -1 and pivot.getTNodeRight() == None):
-                return "lrRotate"
+            if(ancestor != None):
+                if(son.getTNodeRight() == current.getTNodeParent() and pivot.getBalance() == 1 and (ancestor.getBalance() == -1 or ancestor.getBalance() == 1)):
+                    return "leftRotate"
+                elif(son.getTNodeLeft() == current.getTNodeParent() and pivot.getBalance() == 1 and (ancestor.getBalance() == -1 or ancestor.getBalance() == 1)):
+                    return "rlRotate"
+                elif(son.getTNodeLeft() == current.getTNodeParent() and pivot.getBalance() == -1 and (ancestor.getBalance() == -1 or ancestor.getBalance() == 1)):
+                    return "rightRotate"
+                elif(son.getTNodeRight() == current.getTNodeParent() and pivot.getBalance() == -1 and (ancestor.getBalance() == -1 or ancestor.getBalance() == 1)):
+                    return "lrRotate"
+                else:
+                    return "skip"
             else:
-                return "skip"
+                if((son.getTNodeRight() == current or son.getTNodeRight() == current.getTNodeParent()) and pivot.getBalance() == 1):
+                    return "leftRotate"
+                elif((son.getTNodeLeft() == current or son.getTNodeLeft() == current.getTNodeParent()) and pivot.getBalance() == 1):
+                    return "rlRotate"
+                elif((son.getTNodeLeft() == current or son.getTNodeLeft() == current.getTNodeParent()) and pivot.getBalance() == -1):
+                    return "rightRotate"
+                elif((son.getTNodeRight() == current or son.getTNodeRight() == current.getTNodeParent()) and pivot.getBalance() == -1):
+                    return "lrRotate"
+                else:
+                    return "skip"
                     
 
         def rightRotate(root, ancestor, pivot, son):
@@ -109,11 +121,23 @@ class AVL(BST):
 
                 son.setTNodeParent(ancestor)
 
+                if(son.getTNodeRight() != None):
+                    temp = son.getTNodeRight()
+                    pivot.setTNodeLeft(temp)
+                    temp.setTNodeParent(pivot)
+                    son.setTNodeRight(None)
+
                 son.setTNodeRight(pivot)
                 pivot.setTNodeParent(son)
             else:
                 pivot.setTNodeLeft(None)
                 pivot.setTNodeParent(None)
+
+                if(son.getTNodeRight() != None):
+                    temp = son.getTNodeRight()
+                    pivot.setTNodeLeft(temp)
+                    temp.setTNodeParent(pivot)
+                    son.setTNodeRight(None)
 
                 if(ancestor.getTNodeLeft() == pivot):
                     ancestor.setTNodeLeft(son)
@@ -132,11 +156,23 @@ class AVL(BST):
 
                 son.setTNodeParent(ancestor)
 
+                if(son.getTNodeLeft() != None):
+                    temp = son.getTNodeLeft()
+                    pivot.setTNodeRight(temp)
+                    temp.setTNodeParent(pivot)
+                    son.setTNodeLeft(None)
+
                 son.setTNodeLeft(pivot)
                 pivot.setTNodeParent(son)
             else:
                 pivot.setTNodeRight(None)
                 pivot.setTNodeParent(None)
+
+                if(son.getTNodeLeft() != None):
+                    temp = son.getTNodeLeft()
+                    pivot.setTNodeRight(temp)
+                    temp.setTNodeParent(pivot)
+                    son.setTNodeLeft(None)
 
                 if(ancestor.getTNodeLeft() == pivot):
                     ancestor.setTNodeLeft(son)
@@ -149,7 +185,6 @@ class AVL(BST):
                 pivot.setTNodeParent(son)                 
 
 
-        ancestor = None
         ancestor = None
         pivot = None
         son = None
@@ -217,6 +252,14 @@ class AVL(BST):
         super().printBF()
 
 if __name__ == "__main__":
+
+    a = AVL(60)
+    a.insert(80)
+    a.insert(40)
+    a.insert(95)
+    a.insert(70)
+    a.insert(75)
+    '''
     print()
     a = AVL(60)
     a.insert(50)
@@ -226,6 +269,8 @@ if __name__ == "__main__":
     a.insert(80)
     a.insert(75)
     a.insert(90)
+    a.insert(85)
+    '''
     '''
     a = AVL(8)
     a.insert(5)
@@ -243,6 +288,7 @@ if __name__ == "__main__":
     a.insert(30)
     a.insert(50)
     a.insert(10)
+    a.insert(5)
     '''
 
     #a.printInOrder()

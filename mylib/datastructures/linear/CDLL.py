@@ -4,7 +4,6 @@ sys.path.append(str(Path(__file__).parent.parent.parent))
 
 from mylib.datastructures.nodes.Doubly_linked_Node import Node
 
-# NOTE: i dont know if this needs to have a max size or not. if there is then this will need to be changed
 
 class CircularDoublyLinkedList:
 
@@ -30,11 +29,11 @@ class CircularDoublyLinkedList:
             node.next = node
             node.prev = node
         else:
-            node.next = self.head.next
+            node.next = self.head
             self.head.prev = node
-            self.head.next = node
-            node.prev = self.head
-        self.head = node
+            self.head = node
+            self.head.prev = self.tail
+            self.tail.next = self.head
         self.length += 1
         self.sorted = False
 
@@ -63,7 +62,7 @@ class CircularDoublyLinkedList:
             return
         
         current_node = self.head
-        for i in range(index):
+        for i in range(index-1):
             current_node = current_node.next
         node.next = current_node.next
         node.prev = current_node
@@ -71,7 +70,6 @@ class CircularDoublyLinkedList:
         current_node.next = node
         self.length += 1
         self.sorted = False
-
 
     def sort(self):
         if self.head is None:

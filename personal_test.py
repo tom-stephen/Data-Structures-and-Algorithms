@@ -48,6 +48,8 @@ def test_CDLL():
         node = DNode(items[i])
         cdll.insert(node, i)
     
+    cdll.insertHead(DNode(100))
+
     cdll.print()
     print(cdll.head.value)
     print(cdll.tail.value)
@@ -270,4 +272,4 @@ def test_AVL():
 
     avl.printInOrder()
 
-test_AVL()
+test_CDLL()

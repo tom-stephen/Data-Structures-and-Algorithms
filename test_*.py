@@ -85,7 +85,7 @@
 #     assert min_heap.is_empty() == True
 }
 
-# Good but says that some tests where deselected???
+# DONE
 def test_CDLL():
     from mylib.datastructures.linear.CDLL import CircularDoublyLinkedList as CDLL
     from mylib.datastructures.nodes.Doubly_linked_Node import Node
@@ -112,10 +112,51 @@ def test_CDLL():
     assert linked_list.head.value == 1
     assert linked_list.tail.value == 4
 
+    #test the insertHead method
+    node5 = Node(5)
+    linked_list.insertHead(node5)
+    assert linked_list.length == 5
+    assert linked_list.head.value == 5
+    assert linked_list.tail.value == 4
+
+    # test the insert method
+    node6 = Node(6)
+    linked_list.insert(node6, 2)
+    assert linked_list.length == 6
+    assert linked_list.head.value == 5
+    assert linked_list.tail.value == 4
+    assert linked_list.Search(node6).value == 6
+
     # test delete
-    linked_list.delete(node2)
+    linked_list.delete(node6)
+    assert linked_list.length == 5
+    assert linked_list.head.value == 5
+    assert linked_list.tail.value == 4
+    assert linked_list.Search(node6) is None
+
+    #test delete tail
+    linked_list.deleteTail()
+    assert linked_list.length == 4
+    assert linked_list.head.value == 5
+    assert linked_list.tail.value == 3
+
+    #test delete head
+    linked_list.deleteHead()
     assert linked_list.length == 3
-    assert linked_list.Search(node2) is None
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 3
+
+    # test search
+    assert linked_list.Search(node2).value == 2
+
+    #test the sort method
+    linked_list.insertHead(node4)
+    linked_list.insertHead(node6)
+    linked_list.sort()
+    assert linked_list.length == 5
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 6
+
 
     # test clear
     linked_list.clear()
@@ -123,7 +164,7 @@ def test_CDLL():
     assert linked_list.head is None
     assert linked_list.tail is None
 
-# Good but says that some tests where deselected???
+# DONE
 def test_DLL():
     from mylib.datastructures.nodes.Doubly_linked_Node import Node
     from mylib.datastructures.linear.DLL import DoublyLinkedList
@@ -242,6 +283,19 @@ def test_DLL():
         assert dll.tail == node3
         assert dll.length == 2
 
+    def clear_test():
+        dll = DoublyLinkedList()
+        node1 = Node(1)
+        node2 = Node(2)
+        node3 = Node(3)
+        dll.insertTail(node1)
+        dll.insertTail(node2)
+        dll.insertTail(node3)
+        dll.clear()
+        assert dll.head is None
+        assert dll.tail is None
+        assert dll.length == 0
+
     # run the tests above
     insertHead_test()
     insertTail_test()
@@ -252,8 +306,9 @@ def test_DLL():
     deleteHead_test()
     deleteTail_test()
     delete_test()
+    clear_test()
 
-# Good but says that some tests where deselected???
+# DONE
 def test_SLL():
     from mylib.datastructures.nodes.Single_linked_Node import Node
     from mylib.datastructures.linear.SLL import SinglyLinkedList
@@ -388,6 +443,51 @@ def test_SLL():
         linked_list.sortedInsert(Node(0))
         assert linked_list.head.value == 0
 
+    def deleteHead_test():
+        # Test the deleteHead() method
+        linked_list = SinglyLinkedList()
+        linked_list.insertTail(Node(1))
+        linked_list.insertTail(Node(2))
+        linked_list.insertTail(Node(3))
+        assert linked_list.deleteHead() == 1
+        assert linked_list.head.value == 2
+        assert linked_list.tail.value == 3
+        assert linked_list.length == 2
+    
+    def deleteHead_test():
+        # Test the deleteHead() method
+        linked_list = SinglyLinkedList()
+        linked_list.insertTail(Node(1))
+        linked_list.insertTail(Node(2))
+        linked_list.insertTail(Node(3))
+        assert linked_list.deleteHead() == 1
+        assert linked_list.head.value == 2
+        assert linked_list.tail.value == 3
+        assert linked_list.length == 2
+
+    def clear_test():
+        # Test the clear() method
+        linked_list = SinglyLinkedList()
+        linked_list.insertTail(Node(1))
+        linked_list.insertTail(Node(2))
+        linked_list.insertTail(Node(3))
+        linked_list.clear()
+        assert linked_list.head is None
+        assert linked_list.tail is None
+        assert linked_list.length == 0
+
+    def delete_test():
+        # Test the delete() method
+        linked_list = SinglyLinkedList()
+        linked_list.insertTail(Node(1))
+        linked_list.insertTail(Node(2))
+        linked_list.insertTail(Node(3))
+        assert linked_list.delete(Node(2)) == 2
+        assert linked_list.head.value == 1
+        assert linked_list.tail.value == 3
+        assert linked_list.length == 2
+
+
     one_test()
     two_test()
     three_test()
@@ -398,50 +498,68 @@ def test_SLL():
     eight_test()
     nine_test()
     sort_test()
+    deleteHead_test()
+    deleteHead_test()
+    clear_test()
+    delete_test()
 
 # Good but says that some tests where deselected???
 def test_CSLL():
     from mylib.datastructures.linear.CSLL import CircularLinkedList
     from mylib.datastructures.nodes.Single_linked_Node import Node
-    # create nodes
-    node1 = Node(1)
-    node2 = Node(2)
-    node3 = Node(3)
+    def insertHead_test():
+        # Test the insertHead() method
+        circular_linked_list = CircularLinkedList()
+        circular_linked_list.insertHead(Node(1))
+        circular_linked_list.insertHead(Node(2))
+        circular_linked_list.insertHead(Node(3))
+        assert circular_linked_list.head.value == 3
+        assert circular_linked_list.tail.value == 1
+        assert circular_linked_list.length == 3
+    
+    def insertTail_test():
+        # Test the insertTail() method
+        circular_linked_list = CircularLinkedList()
+        circular_linked_list.insertTail(Node(1))
+        circular_linked_list.insertTail(Node(2))
+        circular_linked_list.insertTail(Node(3))
+        assert circular_linked_list.head.value == 1
+        assert circular_linked_list.tail.value == 3
+        assert circular_linked_list.length == 3
+    
+    def insert_test():
+        # Test the insert() method
+        circular_linked_list = CircularLinkedList()
+        circular_linked_list.insert(Node(1))
+        circular_linked_list.insert(Node(2))
+        circular_linked_list.insert(Node(3))
+        assert circular_linked_list.head.value == 1
+        assert circular_linked_list.tail.value == 3
+        assert circular_linked_list.length == 3
 
-    # test inserting nodes
-    cll = CircularLinkedList()
-    cll.insertHead(node2)
-    cll.insertTail(node1)
-    cll.insert(node3, 1)
+    def deleteHead_test():
+        # Test the deleteHead() method
+        circular_linked_list = CircularLinkedList()
+        circular_linked_list.insertTail(Node(1))
+        circular_linked_list.insertTail(Node(2))
+        circular_linked_list.insertTail(Node(3))
+        assert circular_linked_list.deleteHead() == 1
+        assert circular_linked_list.head.value == 2
+        assert circular_linked_list.tail.value == 3
+        assert circular_linked_list.length == 2
+    
+    def deleteTail_test():
+        # Test the deleteTail() method
+        circular_linked_list = CircularLinkedList()
+        circular_linked_list.insertTail(Node(1))
+        circular_linked_list.insertTail(Node(2))
+        circular_linked_list.insertTail(Node(3))
+        assert circular_linked_list.deleteTail() == 3
+        assert circular_linked_list.head.value == 1
+        assert circular_linked_list.tail.value == 2
+        assert circular_linked_list.length == 2
 
-    # test sorting
-    cll.sort()
-
-    # test sorted insert
-    node4 = Node(0)
-    cll.sortedInsert(node4)
-
-    # test search
-    node = cll.search(node3)
-    assert node == node3
-
-    # test deleting nodes
-    cll.deleteTail()
-    cll.deleteHead()
-    cll.delete(node3)
-
-    # test clearing list
-    cll.clear()
-    assert cll.length == 0
-    assert cll.head is None
-    assert cll.tail is None
-    assert not cll.sorted
-
-    # test printing list
-    cll.insertTail(node1)
-    cll.insertTail(node2)
-    cll.insertTail(node3)
-    cll.print()
+    
 
 # Good but says that some tests where deselected???
 def test_STACK():

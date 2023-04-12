@@ -1,4 +1,7 @@
-from mylib.datastructures.nodes.Single_linked_Node import Node
+from pathlib import Path
+import sys
+sys.path.append(str(Path(__file__).parent.parent.parent))
+# from mylib.datastructures.nodes.Single_linked_Node import Node
 
 class SinglyLinkedList:
     def __init__(self, head = None):
@@ -15,6 +18,13 @@ class SinglyLinkedList:
             self.length = 1
 
     def insertHead(self, node):
+        if self.head is None:
+            self.head = node
+            self.tail = node
+            self.length += 1
+            self.sorted = False
+            return
+
         node.next = self.head
         self.head = node
         self.length += 1
@@ -136,26 +146,32 @@ class SinglyLinkedList:
         current_node = self.head
         while current_node.next.next is not None:
             current_node = current_node.next
-        # return the value of the deleted node
-        deleted_node = current_node.next
-        current_node.next = None
+        value = self.tail.value
+        self.tail = current_node
+        self.tail.next = None
         self.length -= 1
-        return deleted_node.value
+        return value
+    
 
     def delete(self, node):
         if self.head is None:
-            return
+            return None
         
         if self.head.value == node.value:
-            self.deleteHead()
-            return
+            val = self.deleteHead()
+            return val
+    
+        if self.tail.value == node.value:
+            val = self.deleteTail()
+            return val
         
         current_node = self.head
         while current_node.next is not None:
             if current_node.next.value == node.value:
+                val = current_node.next.value
                 current_node.next = current_node.next.next
                 self.length -= 1
-                return
+                return val
             current_node = current_node.next
 
     def clear(self):

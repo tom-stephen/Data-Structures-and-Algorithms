@@ -1,3 +1,7 @@
+from pathlib import Path
+import sys
+sys.path.append(str(Path(__file__).parent.parent.parent))
+
 from mylib.datastructures.linear.SLL import SinglyLinkedList
 
 
@@ -31,6 +35,8 @@ class Queue(SinglyLinkedList):
         return self.length
     
     def peek(self):
+        if self.head is None:
+            return None
         return self.head.value
     
     def print(self):

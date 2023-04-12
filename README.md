@@ -30,5 +30,8 @@ There are two pain parts of this project. The Data Structures part and the Graph
 * Dijkstra
  
 ### Testing
+To test the functions a python testing file was made. In this file it tests all the functions and implementations of the datastructures. this insures proper implementation of the datastructures. 
 
+### Authors
+Tom Stephen and Kevin XIE
 

@@ -1,6 +1,9 @@
+from pathlib import Path
+import sys
+sys.path.append(str(Path(__file__).parent.parent.parent))
+
 from mylib.datastructures.nodes.Doubly_linked_Node import Node
 
-# NOTE: i dont know if this needs to have a max size or not. if there is then this will need to be changed
 
 class CircularDoublyLinkedList:
 
@@ -14,6 +17,8 @@ class CircularDoublyLinkedList:
         else:
             self.head = node
             self.tail = node
+            node.next = node
+            node.prev = node
             self.sorted = False
             self.length = 1
 
@@ -21,10 +26,14 @@ class CircularDoublyLinkedList:
         if self.head is None:
             self.head = node
             self.tail = node
+            node.next = node
+            node.prev = node
         else:
             node.next = self.head
             self.head.prev = node
             self.head = node
+            self.head.prev = self.tail
+            self.tail.next = self.head
         self.length += 1
         self.sorted = False
 
@@ -32,10 +41,15 @@ class CircularDoublyLinkedList:
         if self.head is None:
             self.head = node
             self.tail = node
+            node.next = node
+            node.prev = node
         else:
             self.tail.next = node
             node.prev = self.tail
             self.tail = node
+            self.tail.next = self.head
+            self.head.prev = self.tail
+
         self.length += 1
         self.sorted = False
 
@@ -48,12 +62,12 @@ class CircularDoublyLinkedList:
             return
         
         current_node = self.head
-        for i in range(index):
+        for i in range(index-1):
             current_node = current_node.next
-        node.next = current_node
-        node.prev = current_node.prev
-        current_node.prev.next = node
-        current_node.prev = node
+        node.next = current_node.next
+        node.prev = current_node
+        current_node.next.prev = node
+        current_node.next = node
         self.length += 1
         self.sorted = False
 
@@ -62,16 +76,16 @@ class CircularDoublyLinkedList:
             return
         
         if self.sorted:
-            return  
+            return
         
-        for i in range(self.length):
-            current_node = self.head
-            for j in range(self.length):
-                if current_node.value > current_node.next.value:
-                    temp = current_node.value
-                    current_node.value = current_node.next.value
-                    current_node.next.value = temp
-                current_node = current_node.next
+        current_node = self.head
+        while current_node.next != self.head:
+            next_node = current_node.next
+            while next_node != self.head:
+                if current_node.value > next_node.value:
+                    current_node.value, next_node.value = next_node.value, current_node.value
+                next_node = next_node.next
+            current_node = current_node.next
         self.sorted = True
 
     def sortedInsert(self, node):
@@ -91,14 +105,13 @@ class CircularDoublyLinkedList:
                 return
             else:
                 current_node = self.head
-                while current_node.next is not None:
+                while current_node.next != self.head:
                     if current_node.value < node.value and current_node.next.value > node.value:
                         node.next = current_node.next
                         node.prev = current_node
                         current_node.next.prev = node
                         current_node.next = node
                         self.length += 1
-                        self.sorted = True
                         return
                     current_node = current_node.next
         else:
@@ -110,7 +123,7 @@ class CircularDoublyLinkedList:
             return None
         
         current_node = self.head
-        while current_node is not None:
+        while current_node.next != self.head:
             if current_node.value == node.value:
                 return current_node
             current_node = current_node.next
@@ -157,7 +170,7 @@ class CircularDoublyLinkedList:
             return
         
         current_node = self.head
-        while current_node is not None:
+        while current_node.next != self.head:
             if current_node.value == node.value:
                 current_node.prev.next = current_node.next
                 current_node.next.prev = current_node.prev
@@ -181,7 +194,7 @@ class CircularDoublyLinkedList:
             return
         
         current_node = self.head
-        while current_node.next is not None:
+        while current_node.next != self.head:
             print(current_node.value, end=' ')
             current_node = current_node.next
         print(current_node.value)

@@ -43,16 +43,16 @@ class MinHeap:
     def size(self):
         return len(self.heap)
 
-    @staticmethod
     def heapsort(arr):
         n = len(arr)
+        min_heap = MinHeap()
         # Build min heap
-        for i in range(n // 2 - 1, -1, -1):
-            MinHeap._percolate_down(arr, i, n)
+        for i in range(n):
+            min_heap.insert(arr[i])
         # Heap sort
         for i in range(n - 1, 0, -1):
             arr[0], arr[i] = arr[i], arr[0]
-            MinHeap._percolate_down(arr, 0, i)
+            min_heap._percolate_down(0)
         return arr
 
     def _percolate_up(self, index):

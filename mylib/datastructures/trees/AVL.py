@@ -32,7 +32,7 @@ class AVLTree(BST):
         if node.right:
             rHeight = self._height(node.right)
 
-        if abs(lHeight - rHeight) > 1:
+        if abs(self.root.balance) > 1:
             if lHeight > rHeight:
                 if self._height(node.left.left) >= self._height(node.left.right):
                     node = self._right_rotate(node)
@@ -60,15 +60,28 @@ class AVLTree(BST):
         return new_root
     
     def _height(self, node):
-        # helper method to compute the height of a node (number of edges in the longest path from the node to a leaf)
+        # helper method to compute the height of a node (number of edges in the longest path from the node to a leaf) ######### is this right?
         if not node:
             return -1
         return 1 + max(self._height(node.left), self._height(node.right))
     
     def insert(self, node):
         super().insert(node)
+        # update the balence of the node just inserted  ##########  is this right?
+        if not isinstance(node, Node):
+            node = self.search(node)
+        self._update_balance(node)
+        ##########################################################
+
         self.root = self._rebalance(self.root)
 
+    def _update_balance(self, node):
+        # traverse up the tree from the newly inserted node to the root, updating balance factors as necessary
+        while node:
+            node.balance = self._height(node.left) - self._height(node.right)
+            node = node.parent
+
+    
     def delete(self, val):
         super().delete(val)
         self.root = self._rebalance(self.root)

@@ -153,31 +153,42 @@ def test_AVL():
     # Test insert method
     print("testing the insert method")
     avl.insert(8)
+    print("after inserting 8")
     avl.printBF()
+    print("balance of root is: ", avl.root.balance)
     print()
 
     avl.insert(5)
+    print("after inserting 5")
     avl.printBF()
+    print("balance of root is: ", avl.root.balance)
     print()
 
     avl.insert(3)
+    print("after inserting 3")
     avl.printBF()
+    print("balance of root is: ", avl.root.balance)
     print()
 
     avl.insert(7)
+    print("after inserting 7")
     avl.printBF()
     print()
 
     avl.insert(2)
+    print("after inserting 2")
     avl.printBF()
     print()
 
     avl.insert(4)
+    print("after inserting 4")
     avl.printBF()
     print()
 
     avl.insert(6)
+    print("after inserting 6")
     avl.printBF()
+    print("balance of root is", avl.root.balance)
     print()
 
     # Test search method

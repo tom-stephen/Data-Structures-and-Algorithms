@@ -686,58 +686,129 @@ def test_QUEUE():
     assert q.size() == 0
     assert q.peek() is None
 
-# Good but says that some tests where deselected???
+# DONE
 def test_BST():
     from mylib.datastructures.trees.BST import BinarySearchTree as BST
     from mylib.datastructures.nodes.Tree_Node import Node
-    # Create a new empty BST
-    bst = BST()
+    def insert_test():
+        # Test the insert() method
+        bst = BST()
+        bst.insert(Node(5))
+        bst.insert(Node(3))
+        bst.insert(Node(7))
+        bst.insert(Node(2))
+        bst.insert(Node(4))
+        bst.insert(Node(6))
+        bst.insert(Node(8))
+        # bst.printBF()
+        assert bst.root.data == 5
+        assert bst.root.left.data == 3
+        assert bst.root.right.data == 7
+        assert bst.root.left.left.data == 2
+        assert bst.root.left.right.data == 4
+        assert bst.root.right.left.data == 6
+        assert bst.root.right.right.data == 8
+    
+    def search_test():
+        # Test the search() method
+        bst = BST()
+        bst.insert(Node(5))
+        bst.insert(Node(3))
+        bst.insert(Node(7))
+        bst.insert(Node(2))
+        bst.insert(Node(4))
+        bst.insert(Node(6))
+        bst.insert(Node(8))
+        assert bst.search(2).data == 2
+        assert bst.search(10) is None
 
-    # Test insert method
-    bst.insert(Node(8))
-    bst.insert(Node(5))
-    bst.insert(Node(3))
-    bst.insert(Node(7))
-    bst.insert(Node(2))
-    bst.insert(Node(4))
-    bst.insert(Node(6))
+    def delete_test():
+        # Test the delete() method
+        bst = BST()
+        bst.insert(Node(5))
+        bst.insert(Node(3))
+        bst.insert(Node(7))
+        bst.insert(Node(2))
+        bst.insert(Node(4))
+        bst.insert(Node(6))
+        bst.insert(Node(8))
+        bst.delete(3)
+        assert bst.root.left.data == 4
+        assert bst.root.left.left.data == 2
+        bst.delete(7)
+        bst.printBF()
+        assert bst.root.right.data == 8
+        assert bst.root.right.left.data == 6
 
-    # Test search method
-    assert bst.search(5).data == 5
-    assert bst.search(3).data == 3
-    assert bst.search(7).data == 7
-    assert bst.search(2).data == 2
-    assert bst.search(4).data == 4
-    assert bst.search(6).data == 6
-    assert bst.search(8).data == 8
-    assert bst.search(1) is None
+    insert_test()
+    search_test()
+    delete_test()
 
-    # Test delete method
-    bst.delete(5)
-    assert bst.search(5) is None
-    bst.delete(3)
-    assert bst.search(3) is None
-    bst.delete(7)
-    assert bst.search(7) is None
-    bst.delete(2)
-    assert bst.search(2) is None
-    bst.delete(4)
-    assert bst.search(4) is None
-    bst.delete(6)
-    assert bst.search(6) is None
-    bst.delete(8)
-    assert bst.search(8) is None
+# DONE
+def test_AVL():
+    from mylib.datastructures.trees.AVL import AVLTree as AVL
+    from mylib.datastructures.nodes.Tree_Node import Node
+    def init_test():
+        # Test the init() method
+        avl = AVL()
+        assert avl.root is None
 
-    # Test print method
-    bst.insert(Node(5))
-    bst.insert(Node(3))
-    bst.insert(Node(7))
-    bst.insert(Node(2))
-    bst.insert(Node(4))
-    bst.insert(Node(6))
-    bst.insert(Node(8))
-    bst.printBF()
+    def init_test_2():
+        # Test the init() method
+        avl = AVL(Node(5))
+        assert avl.root.data == 5
 
-    # Test clear method
-    # bst.clear()
-    # assert bst.root is None
+    def insert_test():
+        # Test the insert() method
+        avl = AVL()
+        avl.insert(Node(5))
+        avl.insert(Node(3))
+        avl.insert(Node(7))
+        avl.insert(Node(2))
+        avl.insert(Node(4))
+        avl.insert(Node(6))
+        avl.insert(Node(8))
+        assert avl.root.data == 5
+        assert avl.root.left.data == 3
+        assert avl.root.right.data == 7
+        assert avl.root.left.left.data == 2
+        assert avl.root.left.right.data == 4
+        assert avl.root.right.left.data == 6
+        assert avl.root.right.right.data == 8
+
+    def search_test():
+        # Test the search() method
+        avl = AVL()
+        avl.insert(Node(5))
+        avl.insert(Node(3))
+        avl.insert(Node(7))
+        avl.insert(Node(2))
+        avl.insert(Node(4))
+        avl.insert(Node(8))
+        assert avl.search(2).data == 2
+        assert avl.search(10) is None
+
+    def delete_test():
+        # Test the delete() method
+        avl = AVL()
+        avl.insert(Node(5))
+        avl.insert(Node(3))
+        avl.insert(Node(7))
+        avl.insert(Node(2))
+        avl.insert(Node(4))
+        avl.insert(Node(6))
+        avl.insert(Node(8))
+        avl.delete(3)
+        assert avl.root.left.data == 2
+        assert avl.root.left.right.data == 4
+        avl.delete(7)
+        assert avl.root.right.data == 6
+        assert avl.root.right.right.data == 8
+
+    init_test()
+    init_test_2()
+    insert_test()
+    search_test()
+    delete_test()
+
+

@@ -40,15 +40,19 @@ class AVLTree(BST):
             if lHeight > rHeight:
                 if self._height(node.left.left) >= self._height(node.left.right):
                     node = self._right_rotate(node)
+                    self._update_balance(node)
                 else:
                     node.left = self._left_rotate(node.left)
                     node = self._right_rotate(node)
+                    self._update_balance(node)
             else:
                 if self._height(node.right.right) >= self._height(node.right.left):
                     node = self._left_rotate(node)
+                    self._update_balance(node)
                 else:
                     node.right = self._right_rotate(node.right)
                     node = self._left_rotate(node)
+                    self._update_balance(node)
         return node
     
     def _right_rotate(self, node):
@@ -68,6 +72,7 @@ class AVLTree(BST):
         if not node:
             return -1
         return 1 + max(self._height(node.left), self._height(node.right))
+
     
     def insert(self, node):
         super().insert(node)

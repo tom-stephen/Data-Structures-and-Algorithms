@@ -191,6 +191,12 @@ def test_AVL():
     print("balance of root is", avl.root.balance)
     print()
 
+    avl.insert(15)
+    print("after inserting 15")
+    avl.printBF()
+    print("balance of root is", avl.root.balance)
+    print()
+
     # Test search method
     assert avl.search(5).data == 5
     assert avl.search(3).data == 3

@@ -1,89 +1,3 @@
-# Testing file for testing all algorithm implementations
-
-{
-# import mylib.datastructures.heap.VBH_Max as MaxHeap
-# def test_VBH_Max():
-#     # create a max heap object
-#     max_heap = MaxHeap()
-
-#     # add elements to the heap
-#     max_heap.insert(10)
-#     max_heap.insert(20)
-#     max_heap.insert(15)
-
-#     # test that the maximum element is returned correctly
-#     assert max_heap.peek() == 20
-
-#     # test the extract max method
-#     assert max_heap.extract_max() == 20
-
-#     # test the size method
-#     assert max_heap.size() == 2
-
-#     # insert more numbers
-#     max_heap.insert(30)
-#     max_heap.insert(25)
-#     max_heap.insert(5)
-
-#     # test that the size method returns the correct size
-#     assert max_heap.size() == 5
-
-#     # test the heapsort method for a max heap
-#     arr = [10, 20, 15, 30, 25, 5]
-#     assert MaxHeap.heapsort(arr) == [30, 25, 20, 15, 10, 5]
-
-#     # test that elements are removed in the correct order
-#     assert max_heap.remove() == 30
-#     assert max_heap.remove() == 25
-#     assert max_heap.remove() == 15
-#     assert max_heap.remove() == 10
-#     assert max_heap.remove() == 5
-
-#     # test that the heap is empty after removing all elements
-#     assert max_heap.is_empty() == True
-
-# # This needs to be changed
-# import mylib.datastructures.heap.VBH_Min as MinHeap
-# def test_VBH_Min():
-#     # create a min heap object
-#     min_heap = MinHeap()
-
-#     # add elements to the heap
-#     min_heap.insert(10)
-#     min_heap.insert(20)
-#     min_heap.insert(15)
-
-#     # test that the minimum element is returned correctly
-#     assert min_heap.peek() == 10
-
-#     # test the extract min method
-#     assert min_heap.extract_min() == 10
-
-#     # test the size method
-#     assert min_heap.size() == 2
-
-#     # insert more numbers
-#     min_heap.insert(30)
-#     min_heap.insert(25)
-#     min_heap.insert(5)
-
-#     # test that the size method returns the correct size
-#     assert min_heap.size() == 5
-
-#     # test the heapsort method for a min heap
-#     arr = [10, 20, 15, 30, 25, 5]
-#     assert MinHeap.heapsort(arr) == [5, 10, 15, 20, 25, 30]
-
-#     # test that elements are removed in the correct order
-#     assert min_heap.remove() == 5
-#     assert min_heap.remove() == 15
-#     assert min_heap.remove() == 20
-#     assert min_heap.remove() == 25
-#     assert min_heap.remove() == 30
-
-#     # test that the heap is empty after removing all elements
-#     assert min_heap.is_empty() == True
-}
 
 # DONE
 def test_CDLL():
@@ -618,7 +532,6 @@ def test_CSLL():
     clear_test()
     sort_test()
 
-
 # DONE
 def test_STACK():
     from mylib.datastructures.linear.Stack import Stack
@@ -810,5 +723,90 @@ def test_AVL():
     insert_test()
     search_test()
     delete_test()
+
+#NOT DONE (sortfunction is broken!)
+def test_VBH_Max():
+    from mylib.datastructures.heap.VBH_Max import MaxHeap as MaxHeap
+    # create a max heap object
+    max_heap = MaxHeap()
+
+    # add elements to the heap
+    max_heap.insert(10)
+    max_heap.insert(20)
+    max_heap.insert(15)
+
+    # test that the maximum element is returned correctly
+    assert max_heap.peek() == 20
+
+    # test the extract max method
+    assert max_heap.extract_max() == 20
+
+    # test the size method
+    assert max_heap.size() == 2
+
+    # insert more numbers
+    max_heap.insert(30)
+    max_heap.insert(25)
+    max_heap.insert(5)
+
+    # test that the size method returns the correct size
+    assert max_heap.size() == 5
+
+    # test the heapsort method for a max heap
+    arr = [10, 20, 15, 30, 25, 5]
+    assert MaxHeap.heapsort(arr) == [30, 25, 20, 15, 10, 5]
+
+    # test that elements are removed in the correct order
+    assert max_heap.remove() == 30
+    assert max_heap.remove() == 25
+    assert max_heap.remove() == 15
+    assert max_heap.remove() == 10
+    assert max_heap.remove() == 5
+
+    # test that the heap is empty after removing all elements
+    assert max_heap.is_empty() == True
+
+
+#NOT DONE
+def test_VBH_Min():
+    from mylib.datastructures.heap.VBH_Min import MinHeap as MinHeap
+    # create a min heap object
+    min_heap = MinHeap()
+
+    # add elements to the heap
+    min_heap.insert(10)
+    min_heap.insert(20)
+    min_heap.insert(15)
+
+    # test that the minimum element is returned correctly
+    assert min_heap.peek() == 10
+
+    # test the extract min method
+    assert min_heap.extract_min() == 10
+
+    # test the size method
+    assert min_heap.size() == 2
+
+    # insert more numbers
+    min_heap.insert(30)
+    min_heap.insert(25)
+    min_heap.insert(5)
+
+    # test that the size method returns the correct size
+    assert min_heap.size() == 5
+
+    # test the heapsort method for a min heap
+    arr = [10, 20, 15, 30, 25, 5]
+    assert MinHeap.heapsort(arr) == [5, 10, 15, 20, 25, 30]
+
+    # test that elements are removed in the correct order
+    assert min_heap.remove() == 5
+    assert min_heap.remove() == 15
+    assert min_heap.remove() == 20
+    assert min_heap.remove() == 25
+    assert min_heap.remove() == 30
+
+    # test that the heap is empty after removing all elements
+    assert min_heap.is_empty() == True
 
 

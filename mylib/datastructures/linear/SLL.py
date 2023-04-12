@@ -1,3 +1,6 @@
+from pathlib import Path
+import sys
+sys.path.append(str(Path(__file__).parent.parent.parent))
 # from mylib.datastructures.nodes.Single_linked_Node import Node
 
 class SinglyLinkedList:

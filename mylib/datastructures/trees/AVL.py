@@ -1,3 +1,7 @@
+from pathlib import Path
+import sys
+sys.path.append(str(Path(__file__).parent.parent.parent))
+
 from mylib.datastructures.nodes.Tree_Node import Node
 from mylib.datastructures.trees.BST import BinarySearchTree as BST
 
@@ -10,6 +14,7 @@ class AVLTree(BST):
             self.root = Node(root)
         else:
             self.root = root
+            return
         
         # check if the tree is balanced if it is not empty
         lHeight = 0
@@ -69,7 +74,7 @@ class AVLTree(BST):
         # update the balence of the node just inserted  ##########  is this right?
         if not isinstance(node, Node):
             node = self.search(node)
-        self._update_balance(self.root)
+        self._update_balance(node)
         ##########################################################
 
         self.root = self._rebalance(self.root)
@@ -83,10 +88,6 @@ class AVLTree(BST):
     
     def delete(self, val):
         super().delete(val)
-
-        if not isinstance(val, Node):
-            val = self.search(val)
-        self._update_balance(self.root)
         self.root = self._rebalance(self.root)
     
     def search(self, data):

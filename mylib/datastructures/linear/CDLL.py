@@ -1,3 +1,7 @@
+from pathlib import Path
+import sys
+sys.path.append(str(Path(__file__).parent.parent.parent))
+
 from mylib.datastructures.nodes.Doubly_linked_Node import Node
 
 # NOTE: i dont know if this needs to have a max size or not. if there is then this will need to be changed

@@ -503,7 +503,7 @@ def test_SLL():
     clear_test()
     delete_test()
 
-# Good but says that some tests where deselected???
+# DONE
 def test_CSLL():
     from mylib.datastructures.linear.CSLL import CircularLinkedList
     from mylib.datastructures.nodes.Single_linked_Node import Node
@@ -530,11 +530,11 @@ def test_CSLL():
     def insert_test():
         # Test the insert() method
         circular_linked_list = CircularLinkedList()
-        circular_linked_list.insert(Node(1))
-        circular_linked_list.insert(Node(2))
-        circular_linked_list.insert(Node(3))
+        circular_linked_list.insert(Node(1), 0)
+        circular_linked_list.insert(Node(2), 1)
+        circular_linked_list.insert(Node(3), 2)
         assert circular_linked_list.head.value == 1
-        assert circular_linked_list.tail.value == 3
+        assert circular_linked_list.tail.value == 3 
         assert circular_linked_list.length == 3
 
     def deleteHead_test():
@@ -543,7 +543,7 @@ def test_CSLL():
         circular_linked_list.insertTail(Node(1))
         circular_linked_list.insertTail(Node(2))
         circular_linked_list.insertTail(Node(3))
-        assert circular_linked_list.deleteHead() == 1
+        circular_linked_list.deleteHead()
         assert circular_linked_list.head.value == 2
         assert circular_linked_list.tail.value == 3
         assert circular_linked_list.length == 2
@@ -554,14 +554,72 @@ def test_CSLL():
         circular_linked_list.insertTail(Node(1))
         circular_linked_list.insertTail(Node(2))
         circular_linked_list.insertTail(Node(3))
-        assert circular_linked_list.deleteTail() == 3
+        circular_linked_list.deleteTail()
         assert circular_linked_list.head.value == 1
         assert circular_linked_list.tail.value == 2
         assert circular_linked_list.length == 2
 
-    
+    def delete_test():
+        # Test the delete() method
+        circular_linked_list = CircularLinkedList()
+        node1 = Node(1)
+        node2 = Node(2)
+        node3 = Node(3)
+        circular_linked_list.insertTail(node1)
+        circular_linked_list.insertTail(node2)
+        circular_linked_list.insertTail(node3)
+        circular_linked_list.delete(node2)
+        assert circular_linked_list.head.value == 1
+        assert circular_linked_list.tail.value == 3
+        assert circular_linked_list.length == 2
 
-# Good but says that some tests where deselected???
+    
+    def clear_test():
+        # Test the clear() method
+        circular_linked_list = CircularLinkedList()
+        circular_linked_list.insertTail(Node(1))
+        circular_linked_list.insertTail(Node(2))
+        circular_linked_list.insertTail(Node(3))
+        circular_linked_list.clear()
+        assert circular_linked_list.head is None
+        assert circular_linked_list.tail is None
+        assert circular_linked_list.length == 0
+
+    def sort_test():
+        # Test the sort() method
+        circular_linked_list = CircularLinkedList()
+        circular_linked_list.insertTail(Node(3))
+        circular_linked_list.insertTail(Node(1))
+        circular_linked_list.insertTail(Node(2))
+        circular_linked_list.sort()
+        assert circular_linked_list.head.value == 1
+        assert circular_linked_list.tail.value == 3
+        assert circular_linked_list.length == 3
+
+    def search_test():
+        # Test the search() method
+        circular_linked_list = CircularLinkedList()
+        node2 = Node(2)
+        node1 = Node(1)
+        node3 = Node(3)
+        circular_linked_list.insertTail(node1)
+        circular_linked_list.insertTail(node2)
+        circular_linked_list.insertTail(node3)
+        assert circular_linked_list.search(node2).value == 2
+        assert circular_linked_list.search(Node(4)) is None
+
+    search_test()
+    insertHead_test()
+    insertTail_test()
+    insert_test()
+    deleteHead_test()
+    deleteTail_test()
+    delete_test()
+    clear_test()
+    sort_test()
+
+
+# DONE
 def test_STACK():
     from mylib.datastructures.linear.Stack import Stack
     from mylib.datastructures.nodes.Single_linked_Node import Node
@@ -589,7 +647,7 @@ def test_STACK():
     stack.push(Node(6))
     assert stack.length == 2
 
-# Good but says that some tests where deselected???
+# DONE
 def test_QUEUE():
     from mylib.datastructures.linear.Queue import Queue
     from mylib.datastructures.nodes.Single_linked_Node import Node

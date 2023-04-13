@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='DataStructures',
@@ -17,6 +17,5 @@ setup(
                 mylib.datastructures.nodes.Tree_Node, \
                 mylib.datastructures.nodes.Doubly_linked_Node, mylib.datastructures.nodes.Single_linked_Node, \
             mylib.datastructures.heap, \
-              mylib.datastructures.heap.VBH_Max, mylib.datastructures.heap.VBH_Min'],
-    install_requires=[],
+              mylib.datastructures.heap.VBH_Max, mylib.datastructures.heap.VBH_Min']
 )

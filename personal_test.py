@@ -272,7 +272,6 @@ def test_AVL():
 
     avl.printInOrder()
 
-
 def test_VBH_Max():
     from mylib.datastructures.heap.VBH_Max import MaxHeap as MH
 
@@ -291,7 +290,6 @@ def test_VBH_Max():
     mh.print()
     #should be:? [8, 6, 7, 2, 4, 3, 5]
 
-
 def test_VBH_Min():
     from mylib.datastructures.heap.VBH_Min import MinHeap as MinH
 
@@ -308,9 +306,7 @@ def test_VBH_Min():
     mh.insert(8)
     mh.print()
     #should be:? [2, 4, 3, 8, 6, 7, 5]
-
-
-    
+ 
 def init_test_2():
     from mylib.datastructures.heap.VBH_Min import MinHeap
     # Test the init() method
@@ -328,5 +324,14 @@ def init_test_2():
     assert max_heap_2.heap == max_heap.heap
 
 
+# from mylib.datastructures.linear.SLL import SinglyLinkedList as SLL
+# from mylib.datastructures.nodes.Single_linked_Node import Node
 
-init_test_2()
+# # Create a new empty SLL
+# sll = SLL()
+
+# # Test insert method
+# sll.insertHead(Node(5))
+# sll.insertHead(Node(3))
+# sll.insertHead(Node(7))
+# sll.print()

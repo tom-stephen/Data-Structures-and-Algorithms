@@ -324,13 +324,14 @@ def init_test_2():
     assert max_heap_2.heap == max_heap.heap
 
 
-from mylib.datastructures.linear.SLL import SLL
+from mylib.datastructures.linear.SLL import SinglyLinkedList as SLL
+from mylib.datastructures.nodes.Single_linked_Node import Node
 
 # Create a new empty SLL
 sll = SLL()
 
 # Test insert method
-sll.insert(5)
-sll.insert(3)
-sll.insert(7)
+sll.insertHead(Node(5))
+sll.insertHead(Node(3))
+sll.insertHead(Node(7))
 sll.print()

@@ -3,11 +3,12 @@ class MaxHeap:
     
     def __init__(self, size = 0, array = None):
         self.heap = []
+       
         if array is not None:
             self.heap = self._heapify(array)
-        else:
-            self.heap = [0] * size
-
+        
+        elif size > 0:
+            self.heap = [] * size
 
     def getSize(self):
         return len(self.heap)
@@ -38,15 +39,9 @@ class MaxHeap:
         del self.heap[-1]
         self._percolate_down(index)
 
-
     def sort(self):
-        #applyes heap sort to the heap contents
-        n = self.getSize()
-        for i in range(n - 1, 0, -1):
-            self.heap[0], self.heap[i] = self.heap[i], self.heap[0]
-            self._percolate_down(0)
+        self.heap.sort()
         
-    
     def print(self):
         # displays the content of the heap vector over 2 lines. 
         # First line is the index of the parent of each element. 
@@ -62,7 +57,6 @@ class MaxHeap:
 
     def _percolate_up(self, index):
         parent = (index - 1) // 2
-        ############################## > or < ##############################
         if parent >= 0 and self.heap[parent] < self.heap[index]:
             self.heap[parent], self.heap[index] = self.heap[index], self.heap[parent]
             self._percolate_up(parent)
@@ -94,14 +88,14 @@ class MaxHeap:
         if right < self.getSize() and self.heap[right] > self.heap[largest]:
             largest = right
         if largest != index:
-            self.heap[largest], self.heap[index] = self.heap[index], self.elements[largest]
+            self.heap[largest], self.heap[index] = self.heap[index], self.heap[largest]
             self._heapifyDown(largest)
 
-    def _heapify(self):
-        n = self.getSize()
-        start_index = (n//2) - 1
-        for i in range(start_index, -1, -1):
-            self._percolate_down(i)
+    def _heapify(self, array):
+        self.heap = array
+        for i in range(len(array) - 1, -1, -1):
+            self._heapifyDown(i)
+        return self.heap
     
     def _parent(self, index):
         return (index - 1) // 2

@@ -309,4 +309,24 @@ def test_VBH_Min():
     mh.print()
     #should be:? [2, 4, 3, 8, 6, 7, 5]
 
-test_VBH_Max()
+
+    
+def init_test_2():
+    from mylib.datastructures.heap.VBH_Min import MinHeap
+    # Test the init() method
+    max_heap = MinHeap(3, [10, 20, 15])
+    max_heap.print()
+    assert max_heap.getSize() == 3
+    assert max_heap.isEmpty() == False
+
+    max_heap_2 = MinHeap()
+    max_heap_2.insert(10)
+    max_heap_2.insert(20)
+    max_heap_2.insert(15)
+    max_heap_2.print()
+
+    assert max_heap_2.heap == max_heap.heap
+
+
+
+init_test_2()

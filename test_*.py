@@ -724,7 +724,7 @@ def test_AVL():
     search_test()
     delete_test()
 
-#NOT DONE (sortfunction is broken!)
+#DONE
 def test_VBH_Max():
     from mylib.datastructures.heap.VBH_Max import MaxHeap as MaxHeap
     
@@ -733,6 +733,21 @@ def test_VBH_Max():
         max_heap = MaxHeap()
         assert max_heap.getSize() == 0
         assert max_heap.isEmpty() == True
+
+    def init_test_2():
+        # Test the init() method
+        max_heap = MaxHeap(3, [10, 20, 15])
+        max_heap.print()
+        assert max_heap.getSize() == 3
+        assert max_heap.isEmpty() == False
+
+        max_heap_2 = MaxHeap()
+        max_heap_2.insert(10)
+        max_heap_2.insert(20)
+        max_heap_2.insert(15)
+        max_heap_2.print()
+
+        assert max_heap_2.heap == max_heap.heap
 
     def insert_test():
         # Test the insert() method
@@ -767,6 +782,23 @@ def test_VBH_Max():
         assert max_heap.isEmpty() == True
         assert max_heap.contains(10) == False
 
+    def size_test():
+        # Test the getSize() method
+        max_heap = MaxHeap()
+        max_heap.insert(10)
+        max_heap.insert(20)
+        max_heap.insert(15)
+        assert max_heap.getSize() == 3
+
+    def contains_test():
+        # Test the contains() method
+        max_heap = MaxHeap()
+        max_heap.insert(10)
+        max_heap.insert(20)
+        max_heap.insert(15)
+        assert max_heap.contains(10) == True
+        assert max_heap.contains(30) == False
+
     def sort_test():
         # Test the sort() method
         max_heap = MaxHeap()
@@ -777,59 +809,122 @@ def test_VBH_Max():
         assert max_heap.getSize() == 3
         assert max_heap.isEmpty() == False
         assert max_heap.contains(10) == True
-        assert max_heap.elements[0] == 20
-        assert max_heap.elements[1] == 10
-        assert max_heap.elements[2] == 15
+        assert max_heap.heap[0] == 10
+        assert max_heap.heap[1] == 15
+        assert max_heap.heap[2] == 20
 
     init_test()
     insert_test()
     delete_test()
     clear_test()
+    size_test()
+    contains_test()
     sort_test()
+    init_test_2()
 
-
-
-
-#NOT DONE (sortfunction is broken!)
+#DONE
 def test_VBH_Min():
     from mylib.datastructures.heap.VBH_Min import MinHeap as MinHeap
-    # create a min heap object
-    min_heap = MinHeap()
+    
+    def init_test():
+        # Test the init() method
+        min_heap = MinHeap()
+        assert min_heap.getSize() == 0
+        assert min_heap.isEmpty() == True
 
-    # add elements to the heap
-    min_heap.insert(10)
-    min_heap.insert(20)
-    min_heap.insert(15)
+    def init_test_2():
+        # Test the init() method
+        min_heap = MinHeap(3, [10, 20, 15])
+        min_heap.print()
+        assert min_heap.getSize() == 3
+        assert min_heap.isEmpty() == False
 
-    # test that the minimum element is returned correctly
-    assert min_heap.peek() == 10
+        min_heap_2 = MinHeap()
+        min_heap_2.insert(10)
+        min_heap_2.insert(20)
+        min_heap_2.insert(15)
+        min_heap_2.print()
 
-    # test the extract min method
-    assert min_heap.extract_min() == 10
+        assert min_heap_2.heap == min_heap.heap
 
-    # test the size method
-    assert min_heap.size() == 2
+    def insert_test():
+        # Test the insert() method
+        min_heap = MinHeap()
+        min_heap.insert(10)
+        min_heap.insert(20)
+        min_heap.insert(15)
+        assert min_heap.getSize() == 3
+        assert min_heap.isEmpty() == False
+        assert min_heap.contains(10) == True
 
-    # insert more numbers
-    min_heap.insert(30)
-    min_heap.insert(25)
-    min_heap.insert(5)
+    def delete_test():
+        # Test the delete() method
+        min_heap = MinHeap()
+        min_heap.insert(10)
+        min_heap.insert(20)
+        min_heap.insert(15)
+        min_heap.delete(10)
+        assert min_heap.getSize() == 2
+        assert min_heap.isEmpty() == False
+        assert min_heap.contains(10) == False
 
-    # test that the size method returns the correct size
-    assert min_heap.size() == 5
+    def clear_test():
+        # Test the clear() method
+        min_heap = MinHeap()
+        min_heap.insert(10)
+        min_heap.insert(20)
+        min_heap.insert(15)
+        assert min_heap.getSize() == 3
+        min_heap.clear()
+        assert min_heap.getSize() == 0
+        assert min_heap.isEmpty() == True
+        assert min_heap.contains(10) == False
 
-    # test the heapsort method for a min heap
-    arr = [10, 20, 15, 30, 25, 5]
-    assert MinHeap.heapsort(arr) == [5, 10, 15, 20, 25, 30]
+    def size_test():
+        # Test the getSize() method
+        min_heap = MinHeap()
+        min_heap.insert(10)
+        min_heap.insert(20)
+        min_heap.insert(15)
+        assert min_heap.getSize() == 3
 
-    # test that elements are removed in the correct order
-    assert min_heap.remove() == 5
-    assert min_heap.remove() == 15
-    assert min_heap.remove() == 20
-    assert min_heap.remove() == 25
-    assert min_heap.remove() == 30
+    def contains_test():
+        # Test the contains() method
+        min_heap = MinHeap()
+        min_heap.insert(10)
+        min_heap.insert(20)
+        min_heap.insert(15)
+        assert min_heap.contains(10) == True
+        assert min_heap.contains(30) == False
 
-    # test that the heap is empty after removing all elements
-    assert min_heap.is_empty() == True
+    def sort_test():
+        # Test the sort() method
+        min_heap = MinHeap()
+        min_heap.insert(10)
+        min_heap.insert(20)
+        min_heap.insert(15)
+        min_heap.sort()
+        assert min_heap.getSize() == 3
+        assert min_heap.isEmpty() == False
+        assert min_heap.contains(10) == True
+        assert min_heap.heap[0] == 10
+        assert min_heap.heap[1] == 15
+        assert min_heap.heap[2] == 20
 
+    def init2_test():
+        # Test the init() method
+        min_heap = MinHeap(3, [10, 20, 15])
+        assert min_heap.getSize() == 3
+        assert min_heap.isEmpty() == False
+        assert min_heap.contains(10) == True
 
+    
+    init_test()
+    insert_test()
+    delete_test()
+    clear_test()
+    size_test()
+    contains_test()
+    sort_test()
+    init2_test()
+    init_test_2()

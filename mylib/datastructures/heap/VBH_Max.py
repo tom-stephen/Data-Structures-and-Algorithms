@@ -1,67 +1,124 @@
 
 class MaxHeap:
-    def __init__(self):
+    
+    def __init__(self, size = 0, array = None):
         self.heap = []
+        if array is not None:
+            self.heap = self._heapify(array)
+        else:
+            self.heap = [0] * size
 
-    def insert(self, item):
-        self.heap.append(item)
+
+    def getSize(self):
+        return len(self.heap)
+    
+    def isEmpty(self):
+        return self.getSize() == 0
+    
+    def clear(self):
+        self.heap.clear()
+
+    def contains(self, value):
+        return value in self.heap
+    
+    def insert(self, value):
+        self.heap.append(value)
         self._percolate_up(len(self.heap) - 1)
 
-    def remove(self):
-        if self.is_empty():
-            return None
-        max_item = self.heap[0]
-        self.heap[0] = self.heap[-1]
-        del self.heap[-1]
-        self._percolate_down(0)
-        return max_item
-    
-    def extract_max(self):
-        if self.is_empty():
-            return None
-        max_item = self.heap[0]
-        self.heap[0] = self.heap[-1]
-        del self.heap[-1]
-        self._percolate_down(0)
-        return max_item
-
     def peek(self):
-        if self.is_empty():
+        if self.isEmpty():
             return None
         return self.heap[0]
+    
+    def delete(self, value):
+        if self.isEmpty():
+            return None
+        index = self.heap.index(value)
+        self.heap[index] = self.heap[-1]
+        del self.heap[-1]
+        self._percolate_down(index)
 
-    def is_empty(self):
-        return len(self.heap) == 0
 
-    def size(self):
-        return len(self.heap)
-
-    def heapsort(arr):
-        n = len(arr)
-        # Build max heap
-        max_heap = MaxHeap()
-        for i in range(n):
-            max_heap.insert(arr[i])
-        # Heap sort
+    def sort(self):
+        #applyes heap sort to the heap contents
+        n = self.getSize()
         for i in range(n - 1, 0, -1):
-            arr[0], arr[i] = arr[i], arr[0]
-            max_heap._percolate_down(0)
-        return arr
+            self.heap[0], self.heap[i] = self.heap[i], self.heap[0]
+            self._percolate_down(0)
+        
+    
+    def print(self):
+        # displays the content of the heap vector over 2 lines. 
+        # First line is the index of the parent of each element. 
+        # Second line are the elements themselves
+        string = ""
+        for i in range(len(self.heap)):
+            string += str(self._parent(i)) + " "
+        print(string)
+        string = ""
+        for i in range(len(self.heap)):
+            string += str(self.heap[i]) + " "
+        print(string)
 
     def _percolate_up(self, index):
         parent = (index - 1) // 2
+        ############################## > or < ##############################
         if parent >= 0 and self.heap[parent] < self.heap[index]:
             self.heap[parent], self.heap[index] = self.heap[index], self.heap[parent]
             self._percolate_up(parent)
-
+        
     def _percolate_down(self, index):
-        left = index * 2 + 1
-        right = index * 2 + 2
+        left = 2 * index + 1
+        right = 2 * index + 2
         largest = index
-        if left < len(self.heap) and self.heap[left] > self.heap[largest]:
+        if left < self.getSize() and self.heap[left] > self.heap[largest]:
             largest = left
-        if right < len(self.heap) and self.heap[right] > self.heap[largest]:
+        if right < self.getSize() and self.heap[right] > self.heap[largest]:
             largest = right
         if largest != index:
             self.heap[largest], self.heap[index] = self.heap[index], self.heap[largest]
             self._percolate_down(largest)
+
+    def _heapifyUp(self, index):
+        parent = (index - 1) // 2
+        if parent >= 0 and self.heap[parent] < self.heap[index]:
+            self.heap[parent], self.heap[index] = self.heap[index], self.heap[parent]
+            self._heapifyUp(parent)
+
+    def _heapifyDown(self, index):
+        left = 2 * index + 1
+        right = 2 * index + 2
+        largest = index
+        if left < self.getSize() and self.heap[left] > self.heap[largest]:
+            largest = left
+        if right < self.getSize() and self.heap[right] > self.heap[largest]:
+            largest = right
+        if largest != index:
+            self.heap[largest], self.heap[index] = self.heap[index], self.elements[largest]
+            self._heapifyDown(largest)
+
+    def _heapify(self):
+        n = self.getSize()
+        start_index = (n//2) - 1
+        for i in range(start_index, -1, -1):
+            self._percolate_down(i)
+    
+    def _parent(self, index):
+        return (index - 1) // 2
+    
+    def _left(self, index):
+        return 2 * index + 1
+    
+    def _right(self, index):
+        return 2 * index + 2
+    
+    def _swap(self, index1, index2):
+        self.heap[index1], self.heap[index2] = self.heap[index2], self.heap[index1]
+
+
+    
+
+    
+    
+
+

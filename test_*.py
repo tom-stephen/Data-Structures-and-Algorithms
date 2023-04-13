@@ -727,44 +727,67 @@ def test_AVL():
 #NOT DONE (sortfunction is broken!)
 def test_VBH_Max():
     from mylib.datastructures.heap.VBH_Max import MaxHeap as MaxHeap
-    # create a max heap object
-    max_heap = MaxHeap()
+    
+    def init_test():
+        # Test the init() method
+        max_heap = MaxHeap()
+        assert max_heap.getSize() == 0
+        assert max_heap.isEmpty() == True
 
-    # add elements to the heap
-    max_heap.insert(10)
-    max_heap.insert(20)
-    max_heap.insert(15)
+    def insert_test():
+        # Test the insert() method
+        max_heap = MaxHeap()
+        max_heap.insert(10)
+        max_heap.insert(20)
+        max_heap.insert(15)
+        assert max_heap.getSize() == 3
+        assert max_heap.isEmpty() == False
+        assert max_heap.contains(10) == True
 
-    # test that the maximum element is returned correctly
-    assert max_heap.peek() == 20
+    def delete_test():
+        # Test the delete() method
+        max_heap = MaxHeap()
+        max_heap.insert(10)
+        max_heap.insert(20)
+        max_heap.insert(15)
+        max_heap.delete(10)
+        assert max_heap.getSize() == 2
+        assert max_heap.isEmpty() == False
+        assert max_heap.contains(10) == False
 
-    # test the extract max method
-    assert max_heap.extract_max() == 20
+    def clear_test():
+        # Test the clear() method
+        max_heap = MaxHeap()
+        max_heap.insert(10)
+        max_heap.insert(20)
+        max_heap.insert(15)
+        assert max_heap.getSize() == 3
+        max_heap.clear()
+        assert max_heap.getSize() == 0
+        assert max_heap.isEmpty() == True
+        assert max_heap.contains(10) == False
 
-    # test the size method
-    assert max_heap.size() == 2
+    def sort_test():
+        # Test the sort() method
+        max_heap = MaxHeap()
+        max_heap.insert(10)
+        max_heap.insert(20)
+        max_heap.insert(15)
+        max_heap.sort()
+        assert max_heap.getSize() == 3
+        assert max_heap.isEmpty() == False
+        assert max_heap.contains(10) == True
+        assert max_heap.elements[0] == 20
+        assert max_heap.elements[1] == 10
+        assert max_heap.elements[2] == 15
 
-    # insert more numbers
-    max_heap.insert(30)
-    max_heap.insert(25)
-    max_heap.insert(5)
+    init_test()
+    insert_test()
+    delete_test()
+    clear_test()
+    sort_test()
 
-    # test that the size method returns the correct size
-    assert max_heap.size() == 5
 
-    # test the heapsort method for a max heap
-    arr = [10, 20, 15, 30, 25, 5]
-    assert MaxHeap.heapsort(arr) == [30, 25, 20, 15, 10, 5]
-
-    # test that elements are removed in the correct order
-    assert max_heap.remove() == 30
-    assert max_heap.remove() == 25
-    assert max_heap.remove() == 15
-    assert max_heap.remove() == 10
-    assert max_heap.remove() == 5
-
-    # test that the heap is empty after removing all elements
-    assert max_heap.is_empty() == True
 
 
 #NOT DONE (sortfunction is broken!)

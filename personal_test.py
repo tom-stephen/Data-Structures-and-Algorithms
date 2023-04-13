@@ -272,4 +272,61 @@ def test_AVL():
 
     avl.printInOrder()
 
-test_CDLL()
+
+def test_VBH_Max():
+    from mylib.datastructures.heap.VBH_Max import MaxHeap as MH
+
+    # Create a new empty heap
+    mh = MH()
+
+    # Test insert method
+    mh.insert(15)
+    mh.insert(10)
+    mh.insert(14)
+    mh.insert(7)
+    mh.insert(5)
+    mh.insert(12)
+    mh.insert(1)
+    print("max heap:")
+    mh.print()
+    #should be:? [8, 6, 7, 2, 4, 3, 5]
+
+
+def test_VBH_Min():
+    from mylib.datastructures.heap.VBH_Min import MinHeap as MinH
+
+    # Create a new empty heap
+    mh = MinH()
+
+    # Test insert method
+    mh.insert(5)
+    mh.insert(3)
+    mh.insert(7)
+    mh.insert(2)
+    mh.insert(4)
+    mh.insert(6)
+    mh.insert(8)
+    mh.print()
+    #should be:? [2, 4, 3, 8, 6, 7, 5]
+
+
+    
+def init_test_2():
+    from mylib.datastructures.heap.VBH_Min import MinHeap
+    # Test the init() method
+    max_heap = MinHeap(3, [10, 20, 15])
+    max_heap.print()
+    assert max_heap.getSize() == 3
+    assert max_heap.isEmpty() == False
+
+    max_heap_2 = MinHeap()
+    max_heap_2.insert(10)
+    max_heap_2.insert(20)
+    max_heap_2.insert(15)
+    max_heap_2.print()
+
+    assert max_heap_2.heap == max_heap.heap
+
+
+
+init_test_2()

@@ -1,0 +1,5 @@
+setup.py
+TomAndKevinDataStructures.egg-info/PKG-INFO
+TomAndKevinDataStructures.egg-info/SOURCES.txt
+TomAndKevinDataStructures.egg-info/dependency_links.txt
+TomAndKevinDataStructures.egg-info/top_level.txt

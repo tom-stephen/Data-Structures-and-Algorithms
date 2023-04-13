@@ -1,9 +1,9 @@
-# from mylib.datastructures.linear.SLL import SinglyLinkedList as SLL
-# from mylib.datastructures.linear.DLL import DoublyLinkedList as DLL
-# from mylib.datastructures.linear.CDLL import CircularDoublyLinkedList as CDLL
-# from mylib.datastructures.linear.CSLL import CircularLinkedList as CSLL
-# from mylib.datastructures.nodes.Single_linked_Node import Node as SNode
-# from mylib.datastructures.nodes.Doubly_linked_Node import Node as DNode
+from mylib.datastructures.linear.SLL import SinglyLinkedList as SLL
+from mylib.datastructures.linear.DLL import DoublyLinkedList as DLL
+from mylib.datastructures.linear.CDLL import CircularDoublyLinkedList as CDLL
+from mylib.datastructures.linear.CSLL import CircularLinkedList as CSLL
+from mylib.datastructures.nodes.Single_linked_Node import Node as SNode
+from mylib.datastructures.nodes.Doubly_linked_Node import Node as DNode
 
 def test_SLL():
     sll = SLL()
@@ -324,14 +324,14 @@ def init_test_2():
     assert max_heap_2.heap == max_heap.heap
 
 
-from mylib.datastructures.linear.SLL import SinglyLinkedList as SLL
-from mylib.datastructures.nodes.Single_linked_Node import Node
+# from mylib.datastructures.linear.SLL import SinglyLinkedList as SLL
+# from mylib.datastructures.nodes.Single_linked_Node import Node
 
-# Create a new empty SLL
-sll = SLL()
+# # Create a new empty SLL
+# sll = SLL()
 
-# Test insert method
-sll.insertHead(Node(5))
-sll.insertHead(Node(3))
-sll.insertHead(Node(7))
-sll.print()
+# # Test insert method
+# sll.insertHead(Node(5))
+# sll.insertHead(Node(3))
+# sll.insertHead(Node(7))
+# sll.print()

@@ -767,7 +767,7 @@ def test_VBH_Max():
     assert max_heap.is_empty() == True
 
 
-#NOT DONE
+#NOT DONE (sortfunction is broken!)
 def test_VBH_Min():
     from mylib.datastructures.heap.VBH_Min import MinHeap as MinHeap
     # create a min heap object

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='TomAndKevinDataStructures',
-    version='0.1',
+    version='0.2',
     description='Data Structures',
     author='Tom',
     author_email='tom.stephen@icloud.com',

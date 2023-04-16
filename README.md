@@ -32,6 +32,9 @@ There are two pain parts of this project. The Data Structures part and the Graph
 ### Testing
 To test the functions a python testing file was made. In this file it tests all the functions and implementations of the datastructures. this insures proper implementation of the datastructures. 
 
+### Instructions
+This code has been packages and posted on PyPi for distrbution. to use the code you your project install the package using `pip install -i https://test.pypi.org/simple/ TomAndKevinDataStructures==0.2` 
+
 ### Authors
 Tom Stephen and Kevin XIE
 
